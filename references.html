@@ -6,88 +6,128 @@
     <title>Technical Library | Albert Fan</title>
     <style>
         :root {
-            --primary: #0366d6;
-            --bg: #f6f8fa;
-            --text: #24292e;
+            --primary-blue: #0366d6;
+            --text-color: #24292e;
+            --bg-gray: #f6f8fa;
+            --border-color: #e1e4e8;
         }
-        body { font-family: -apple-system, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 40px 20px; }
-        .container { max-width: 1000px; margin: 0 auto; }
-        .back-link { text-decoration: none; color: var(--primary); font-weight: 500; margin-bottom: 20px; display: inline-block; }
-        
-        /* 卡片選單佈局 */
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
-        .card { background: white; border: 1px solid #e1e4e8; border-radius: 12px; padding: 24px; cursor: pointer; transition: 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-        .card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
-        .card h3 { margin: 0 0 10px 0; color: var(--primary); }
-        .tag { background: #f1f8ff; color: var(--primary); padding: 4px 8px; border-radius: 6px; font-size: 0.8em; font-weight: bold; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; 
+            background: var(--bg-gray); 
+            color: var(--text-color); 
+            margin: 0; 
+            padding: 40px 20px; 
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        .back-home { text-decoration: none; color: var(--primary-blue); font-weight: 500; margin-bottom: 20px; display: inline-block; }
 
-        /* 彈出層 (Modal) 樣式 */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; overflow-y: auto; }
-        .modal:target { display: block; } /* 利用錨點控制顯示 */
+        /* Card Design */
+        .grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .card { 
+            background: white; 
+            border: 1px solid var(--border-color); 
+            border-radius: 12px; 
+            padding: 30px; 
+            text-decoration: none; 
+            color: inherit; 
+            transition: 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        .card:hover { border-color: var(--primary-blue); transform: translateY(-3px); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .card .tag { background: #f1f8ff; color: var(--primary-blue); padding: 4px 10px; border-radius: 6px; font-size: 0.85em; font-weight: 600; }
+        .card h3 { margin-top: 15px; font-size: 1.4em; line-height: 1.4; color: #1a1a1a; }
+
+        /* Modal / Detail View */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; overflow-y: auto; padding: 20px; box-sizing: border-box; }
+        .modal:target { display: block; }
         
-        .modal-content { background: white; max-width: 800px; margin: 40px auto; padding: 40px; border-radius: 12px; position: relative; }
-        .close-btn { position: sticky; top: 0; float: right; font-size: 28px; text-decoration: none; color: #aaa; }
+        .modal-content { background: white; max-width: 850px; margin: 20px auto; padding: 45px; border-radius: 12px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .close-btn { position: absolute; top: 20px; right: 25px; font-size: 35px; text-decoration: none; color: #666; }
+
+        h2 { margin-top: 0; font-size: 1.8em; color: #1a1a1a; }
+        h4 { color: var(--primary-blue); border-left: 5px solid var(--primary-blue); padding-left: 15px; margin-top: 40px; margin-bottom: 15px; font-size: 1.2em; }
         
-        /* 內部詳細內容樣式 */
-        h4 { color: var(--primary); border-left: 4px solid var(--primary); padding-left: 12px; margin-top: 30px; }
-        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
-        table th, table td { border: 1px solid #e1e4e8; padding: 12px; text-align: left; }
-        table th { background: #f6f8fa; }
+        /* Figure Box for Images */
+        .figure-box { margin: 25px 0; text-align: center; background: #fff; border: 1px solid #eee; padding: 15px; border-radius: 8px; }
+        .figure-box img { max-width: 100%; height: auto; border-radius: 4px; border: 1px solid #ddd; }
+        .caption { font-size: 0.9em; color: #586069; margin-top: 12px; font-style: italic; }
+
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.95em; }
+        table th, table td { border: 1px solid var(--border-color); padding: 12px; text-align: left; }
+        table th { background: #f6f8fa; color: #24292e; }
+        
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <a href="index.html" class="back-link">← Back to Home</a>
-    <h1>Technical Reference Library</h1>
-    <p>Select a research topic to view in-depth analysis and experimental data.</p>
+    <a href="index.html" class="back-home">&larr; Back to Portfolio</a>
+    <h1 style="margin-bottom: 35px;">Technical Reference Library</h1>
 
     <div class="grid">
-        <a href="#paper1" class="card">
+        <a href="#paper-camphor" class="card">
             <span class="tag">Literature Review</span>
-            <h3>Transfer-free Graphene (Camphor)</h3>
-            <p>Optimization of APCVD parameters and cavity-sealing reliability for HMI sensors.</p>
+            <h3>Synthesis of Transfer-free Graphene Using Camphor for Air Pressure Sensing Applications</h3>
+            <p style="color: #586069; margin-top: 12px;">Comprehensive analysis of APCVD synthesis, Raman characterization, and NEMS sensor performance.</p>
         </a>
-
-        </div>
+    </div>
 </div>
 
-<div id="paper1" class="modal">
+<div id="paper-camphor" class="modal">
     <div class="modal-content">
         <a href="#" class="close-btn">&times;</a>
-        <h2 style="color: var(--primary);">Analysis: Synthesis of Transfer-free Graphene</h2>
-        <p><strong>Source:</strong> <em>Synthesis of Transfer-free Graphene Using Camphor for Air Pressure Sensing Applications</em></p>
-        <hr>
+        <h2>Technical Analysis & Findings</h2>
+        <p style="color: #666; font-size: 0.95em;">Reference Source: Master Thesis (Wu, CYCU, 2023)</p>
+        <hr style="border: 0; border-top: 1px solid #eee;">
 
-        <h4>1. Methodology (Synthesis Recipe)</h4>
-        <p>Focuses on the <strong>Copper Foil Wrapping</strong> method to achieve direct growth on $SiO_2$ without the need for a transfer medium.</p>
+        <h4>1. Methodology: APCVD Synthesis Recipe</h4>
+        <p>The core innovation is the <strong>transfer-free process</strong> using the copper foil wrapping method, allowing graphene growth directly on patterned SiO<sub>2</sub> substrates.</p>
+        
+        <div class="figure-box">
+            <img src="cvd_flow.png" alt="CVD Growth Process Flow">
+            <div class="caption">Figure 1: Schematic of the CVD growth mechanism using copper foil wrapping.</div>
+        </div>
+
         <table>
             <tr><th>Parameter</th><th>Target Specification</th></tr>
             <tr><td>Carbon Source</td><td>2.5 mg Solid Camphor</td></tr>
-            <tr><td>Pre-Annealing</td><td>1000°C / 100 Mins (H₂ Flow)</td></tr>
-            <tr><td>Growth Condition</td><td>950°C for 7 Mins (Ar:H₂ = 20:80)</td></tr>
+            <tr><td>Pre-Annealing</td><td>1000 &deg;C for 100 Mins (H<sub>2</sub> Flow)</td></tr>
+            <tr><td>Growth Condition</td><td>950 &deg;C for 7 Mins (Ar : H<sub>2</sub> = 20 : 80)</td></tr>
         </table>
-        
 
-        <h4>2. Layer Identification (Raman Data)</h4>
+        <h4>2. Layer Identification: Raman Spectroscopy</h4>
+        <p>Verification of high-quality monolayer thickness and low defect density.</p>
+        
+        <div class="figure-box">
+            <img src="raman_result.png" alt="Raman Spectra Results">
+            <div class="caption">Figure 2: Raman spectra confirming monolayer graphene formation.</div>
+        </div>
+
         <ul>
-            <li><strong>Monolayer Verification:</strong> $I_{2D}/I_G$ ratio $\approx$ <strong>2.3</strong>.</li>
-            <li><strong>Quality:</strong> FWHM of 2D peak $\approx$ 34 cm⁻¹; Negligible D-peak.</li>
+            <li><strong>Layer Count:</strong> I<sub>2D</sub>/I<sub>G</sub> intensity ratio &approx; <strong>2.3</strong> (Monolayer confirmed).</li>
+            <li><strong>Quality:</strong> 2D peak FWHM &approx; 34 cm<sup>-1</sup>; negligible D-peak intensity.</li>
         </ul>
-        
 
-        <h4>3. Structural Results (Cavity Sealing)</h4>
+        <h4>3. Structural Results: Cavity Sealing</h4>
+        <p>Inspection of the suspended graphene membrane over micro-cavity arrays.</p>
+        
+        <div class="figure-box">
+            <img src="afm_cavity.png" alt="AFM Surface Topography">
+            <div class="caption">Figure 3: AFM analysis confirming the successful sealing of 3 &mu;m micro-cavities.</div>
+        </div>
+
         <ul>
-            <li><strong>Morphology:</strong> Successful 3μm cavity sealing confirmed by AFM.</li>
-            <li><strong>Uniformity:</strong> Yield rate > 90% across the sensing array.</li>
+            <li><strong>Membrane Integrity:</strong> Successful sealing of 3 &mu;m diameter cavities without rupture.</li>
+            <li><strong>Uniformity:</strong> Yield rate &gt; 90% across the targeted sensing array area.</li>
         </ul>
 
         <h4>4. Device Performance</h4>
         <ul>
-            <li><strong>Linearity:</strong> Excellent linear resistance response to air pressure.</li>
-            <li><strong>Timing:</strong> Response time < 500 ms; Detection limit < 0.1 Torr.</li>
+            <li><strong>Sensing Mechanism:</strong> Stable linear resistance response to air pressure variations.</li>
+            <li><strong>Dynamic Metrics:</strong> Response time &lt; 500 ms; Detection limit &lt; 0.1 Torr.</li>
         </ul>
-        
     </div>
 </div>
 
