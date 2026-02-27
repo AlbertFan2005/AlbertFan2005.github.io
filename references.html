@@ -3,45 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Research References | Albert Fan</title>
+    <title>Technical Library | Albert Fan</title>
     <style>
-        body { font-family: -apple-system, sans-serif; line-height: 1.6; color: #24292e; background: #f8f9fa; margin: 0; padding: 40px 20px; }
-        .container { max-width: 800px; margin: 0 auto; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .back-link { display: inline-block; margin-bottom: 20px; color: #0366d6; text-decoration: none; }
-        h1 { border-bottom: 2px solid #e1e4e8; padding-bottom: 10px; }
-        .paper-box { border: 1px solid #e1e4e8; border-radius: 6px; padding: 20px; margin-top: 30px; }
-        h4 { color: #0366d6; border-left: 4px solid #0366d6; padding-left: 10px; margin-top: 25px; }
+        :root {
+            --primary: #0366d6;
+            --bg: #f6f8fa;
+            --text: #24292e;
+        }
+        body { font-family: -apple-system, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 40px 20px; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        .back-link { text-decoration: none; color: var(--primary); font-weight: 500; margin-bottom: 20px; display: inline-block; }
+        
+        /* 卡片選單佈局 */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .card { background: white; border: 1px solid #e1e4e8; border-radius: 12px; padding: 24px; cursor: pointer; transition: 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
+        .card h3 { margin: 0 0 10px 0; color: var(--primary); }
+        .tag { background: #f1f8ff; color: var(--primary); padding: 4px 8px; border-radius: 6px; font-size: 0.8em; font-weight: bold; }
+
+        /* 彈出層 (Modal) 樣式 */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; overflow-y: auto; }
+        .modal:target { display: block; } /* 利用錨點控制顯示 */
+        
+        .modal-content { background: white; max-width: 800px; margin: 40px auto; padding: 40px; border-radius: 12px; position: relative; }
+        .close-btn { position: sticky; top: 0; float: right; font-size: 28px; text-decoration: none; color: #aaa; }
+        
+        /* 內部詳細內容樣式 */
+        h4 { color: var(--primary); border-left: 4px solid var(--primary); padding-left: 12px; margin-top: 30px; }
         table { width: 100%; border-collapse: collapse; margin: 15px 0; }
-        table th, table td { border: 1px solid #e1e4e8; padding: 10px; text-align: left; }
+        table th, table td { border: 1px solid #e1e4e8; padding: 12px; text-align: left; }
         table th { background: #f6f8fa; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-link">← Back to Portfolio</a>
-        <h1>Literature Review & References</h1>
-        <p>This page documents the technical references and key findings that support my current research projects.</p>
 
-        <div class="paper-box">
-            <h3>Synthesis of Transfer-free Graphene Using Camphor</h3>
-            <p><strong>Core Focus:</strong> Developing an eco-friendly, one-step CVD process to seal micro-cavities for pressure sensing.</p>
-            
-            <h4>1. Methodology (Technical Recipe)</h4>
-            <table>
-                <tr><th>Parameter</th><th>Specification</th></tr>
-                <tr><td>Carbon Source</td><td>2.5 mg Solid Camphor</td></tr>
-                <tr><td>Annealing</td><td>1000°C for 100 Mins (H₂)</td></tr>
-                <tr><td>Growth</td><td>950°C for 7 Mins (Ar:H₂ = 20:80)</td></tr>
-            </table>
+<div class="container">
+    <a href="index.html" class="back-link">← Back to Home</a>
+    <h1>Technical Reference Library</h1>
+    <p>Select a research topic to view in-depth analysis and experimental data.</p>
 
-            <h4>2. Key Results</h4>
-            <ul>
-                <li><strong>Monolayer Confirmation:</strong> Raman I<sub>2D</sub>/I<sub>G</sub> ratio of <strong>2.3</strong>.</li>
-                <li><strong>Structural Quality:</strong> Successfully sealed <strong>3μm cavities</strong> with high yield (>90%).</li>
-                <li><strong>Performance:</strong> Linear sensing response with time-constant < 500 ms.</li>
-            </ul>
-        </div>
+    <div class="grid">
+        <a href="#paper1" class="card">
+            <span class="tag">Literature Review</span>
+            <h3>Transfer-free Graphene (Camphor)</h3>
+            <p>Optimization of APCVD parameters and cavity-sealing reliability for HMI sensors.</p>
+        </a>
 
         </div>
+</div>
+
+<div id="paper1" class="modal">
+    <div class="modal-content">
+        <a href="#" class="close-btn">&times;</a>
+        <h2 style="color: var(--primary);">Analysis: Synthesis of Transfer-free Graphene</h2>
+        <p><strong>Source:</strong> <em>Synthesis of Transfer-free Graphene Using Camphor for Air Pressure Sensing Applications</em></p>
+        <hr>
+
+        <h4>1. Methodology (Synthesis Recipe)</h4>
+        <p>Focuses on the <strong>Copper Foil Wrapping</strong> method to achieve direct growth on $SiO_2$ without the need for a transfer medium.</p>
+        <table>
+            <tr><th>Parameter</th><th>Target Specification</th></tr>
+            <tr><td>Carbon Source</td><td>2.5 mg Solid Camphor</td></tr>
+            <tr><td>Pre-Annealing</td><td>1000°C / 100 Mins (H₂ Flow)</td></tr>
+            <tr><td>Growth Condition</td><td>950°C for 7 Mins (Ar:H₂ = 20:80)</td></tr>
+        </table>
+        
+
+        <h4>2. Layer Identification (Raman Data)</h4>
+        <ul>
+            <li><strong>Monolayer Verification:</strong> $I_{2D}/I_G$ ratio $\approx$ <strong>2.3</strong>.</li>
+            <li><strong>Quality:</strong> FWHM of 2D peak $\approx$ 34 cm⁻¹; Negligible D-peak.</li>
+        </ul>
+        
+
+        <h4>3. Structural Results (Cavity Sealing)</h4>
+        <ul>
+            <li><strong>Morphology:</strong> Successful 3μm cavity sealing confirmed by AFM.</li>
+            <li><strong>Uniformity:</strong> Yield rate > 90% across the sensing array.</li>
+        </ul>
+
+        <h4>4. Device Performance</h4>
+        <ul>
+            <li><strong>Linearity:</strong> Excellent linear resistance response to air pressure.</li>
+            <li><strong>Timing:</strong> Response time < 500 ms; Detection limit < 0.1 Torr.</li>
+        </ul>
+        
+    </div>
+</div>
+
 </body>
 </html>
