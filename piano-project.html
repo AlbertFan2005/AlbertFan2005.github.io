@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arduino Piano Project | Albert Fan</title>
+    <style>
+        :root {
+            --primary: #0366d6;
+            --bg: #f6f8fa;
+            --card-bg: #ffffff;
+            --text: #24292e;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.6; color: var(--text); background: var(--bg); margin: 0; padding: 40px 20px; }
+        .container { max-width: 850px; margin: 0 auto; background: var(--card-bg); padding: 40px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .back-link { text-decoration: none; color: var(--primary); font-weight: 500; display: inline-block; margin-bottom: 20px; }
+        
+        h1 { border-bottom: 2px solid #e1e4e8; padding-bottom: 10px; margin-top: 0; }
+        h3 { color: var(--primary); margin-top: 35px; border-left: 5px solid var(--primary); padding-left: 15px; }
+        
+        /* Media Container */
+        .media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+        .figure-box { background: #fff; border: 1px solid #eee; padding: 10px; border-radius: 8px; text-align: center; }
+        .figure-box img, .video-container video { width: 100%; height: auto; border-radius: 4px; }
+        .caption { font-size: 0.85em; color: #666; margin-top: 8px; font-style: italic; }
+        
+        .video-container { margin: 30px 0; background: #000; border-radius: 8px; overflow: hidden; }
+
+        /* Takeaways Section */
+        .takeaways { background: #f1f8ff; border-radius: 8px; padding: 25px; margin-top: 30px; border: 1px solid #c8e1ff; }
+        .takeaways ul { margin: 0; padding-left: 20px; }
+        .takeaways li { margin-bottom: 10px; }
+
+        @media (max-width: 600px) { .media-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="index.html" class="back-link">&larr; Back to Home</a>
+    <h1>Arduino Electronic Piano</h1>
+    <p>A hands-on embedded system project developed for the Electronics Engineering Laboratory. This project demonstrates the integration of hardware interrupts, frequency-to-tone mapping, and basic memory storage.</p>
+
+    <h3>Hardware Design</h3>
+    <div class="media-grid">
+        <div class="figure-box">
+            <img src="piano_schematic.png" alt="Circuit Diagram">
+            <div class="caption">Figure 1: Circuit Schematic (I/O Mapping)</div>
+        </div>
+        <div class="figure-box">
+            <img src="piano_final.png" alt="Final Prototype">
+            <div class="caption">Figure 2: Final Assembled Prototype</div>
+        </div>
+    </div>
+
+    <h3>Functionality Demo</h3>
+    <div class="video-container">
+        <video controls>
+            <source src="piano_demo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <p style="text-align: center; font-size: 0.9em; color: #666;">Demonstrating real-time play and record/playback features.</p>
+
+    <div class="takeaways">
+        <h3 style="margin-top:0; border:none; padding:0;">Project Reflections & Takeaways</h3>
+        <ul>
+            <li><strong>Hardware Integration & Floating Pins:</strong> During the initial setup, I encountered signal instability due to "floating" digital pins. I successfully resolved this by implementing <strong>pull-down resistors</strong>, ensuring stable input signals from the push buttons.</li>
+            <li><strong>Software Logic & State Management:</strong> I discovered that conflicting background processes could interrupt the buzzer output. By optimizing the <strong>program execution priority</strong>, I ensured smooth transitions between the recording and playback modes.</li>
+            <li><strong>Practical Debugging Skills:</strong> This project significantly enhanced my debugging abilities. I learned to use a multimeter for hardware verification and the serial monitor for real-time software tracing to identify bottlenecks.</li>
+            <li><strong>System Reliability:</strong> Beyond basic circuit design, I realized that building a robust system requires considering environmental noise and software timing, which are fundamental to reliable embedded system design.</li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>
