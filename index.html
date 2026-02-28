@@ -161,3 +161,36 @@
 
 </body>
 </html>
+
+<div class="section">
+    <h2>My Digital EE Companion</h2>
+    <p>This is my virtual lab partner. It loves caffeine.</p>
+    
+    <div style="text-align: center; background: #f1f8ff; padding: 20px; border-radius: 8px; border: 1px solid #d6eaf8;">
+        <div id="pet" style="font-size: 5em; margin-bottom: 15px;">( •_• )</div>
+        
+        <p>Status: <span id="pet-status" style="font-weight: bold; color: #2c3e50;">Bored</span></p>
+        
+        <button onclick="feedCaffeine()" style="background: #e67e22; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">
+            Feed Caffeine ☕
+        </button>
+    </div>
+</div>
+
+<script>
+    function feedCaffeine() {
+        // 1. 改變寵物的樣子
+        document.getElementById('pet').innerText = '(⊙o⊙)';
+        
+        // 2. 改變寵物的狀態文字
+        document.getElementById('pet-status').innerText = 'Hyper & Ready to Code!';
+        document.getElementById('pet-status').style.color = '#e67e22';
+        
+        // 3. 設定一個計時器，3秒後恢復原狀
+        setTimeout(function() {
+            document.getElementById('pet').innerText = '( •_• )';
+            document.getElementById('pet-status').innerText = 'Bored';
+            document.getElementById('pet-status').style.color = '#2c3e50';
+        }, 3000); // 3000 毫秒 = 3 秒
+    }
+</script>
