@@ -177,20 +177,87 @@
     </div>
 </div>
 
+<div class="section" style="text-align: center; overflow: hidden;">
+    <h2>My Lab Companion</h2>
+    <p>Try feeding it some caffeine!</p>
+    
+    <div id="pet-container" style="position: relative; height: 200px; display: flex; justify-content: center; align-items: center;">
+        <svg id="ee-pet" width="120" height="120" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="45" fill="#3498db" id="pet-body" />
+            <circle cx="35" cy="40" r="8" fill="white" />
+            <circle cx="65" cy="40" r="8" fill="white" />
+            <circle id="pupil-l" cx="35" cy="40" r="4" fill="#2c3e50" />
+            <circle id="pupil-r" cx="65" cy="40" r="4" fill="#2c3e50" />
+            <path id="pet-mouth" d="M 40 65 Q 50 70 60 65" stroke="#2c3e50" stroke-width="2" fill="none" />
+        </svg>
+    </div>
+
+    <p>Status: <span id="pet-status" style="font-weight: bold; color: #34495e;">Observing your circuit...</span></p>
+    
+    <button onclick="feedCaffeine()" style="background: #e67e22; color: white; border: none; padding: 10px 25px; border-radius: 20px; cursor: pointer; font-weight: bold; transition: 0.3s;">
+        Give Caffeine ☕
+    </button>
+</div>
+
 <script>
+    const pupilL = document.getElementById('pupil-l');
+    const pupilR = document.getElementById('pupil-r');
+    const mouth = document.getElementById('pet-mouth');
+    const body = document.getElementById('pet-body');
+    const statusText = document.getElementById('pet-status');
+
+    // 1. 滑鼠跟隨邏輯：讓瞳孔跟著滑鼠轉動
+    document.addEventListener('mousemove', (e) => {
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+        
+        movePupil(pupilL, 35, 40, mouseX, mouseY);
+        movePupil(pupilR, 65, 40, mouseX, mouseY);
+    });
+
+    function movePupil(pupil, centerX, centerY, mX, mY) {
+        const rect = pupil.getBoundingClientRect();
+        const pX = rect.left + rect.width / 2;
+        const pY = rect.top + rect.height / 2;
+        
+        const angle = Math.atan2(mY - pY, mX - pX);
+        const distance = 3; // 瞳孔移動範圍
+        
+        const x = centerX + Math.cos(angle) * distance;
+        const y = centerY + Math.sin(angle) * distance;
+        
+        pupil.setAttribute('cx', x);
+        pupil.setAttribute('cy', y);
+    }
+
+    // 2. 餵食咖啡因的進階動畫
     function feedCaffeine() {
-        // 1. 改變寵物的樣子
-        document.getElementById('pet').innerText = '(⊙o⊙)';
+        // 變色並張大嘴巴
+        body.setAttribute('fill', '#e67e22');
+        mouth.setAttribute('d', 'M 40 65 Q 50 80 60 65'); // 嘴巴變大
+        statusText.innerText = "HYPER MODE ACTIVATED! ⚡";
+        statusText.style.color = "#e67e22";
+
+        // 寵物震動效果
+        const petSvg = document.getElementById('ee-pet');
+        petSvg.style.transform = "scale(1.2)";
         
-        // 2. 改變寵物的狀態文字
-        document.getElementById('pet-status').innerText = 'Hyper & Ready to Code!';
-        document.getElementById('pet-status').style.color = '#e67e22';
-        
-        // 3. 設定一個計時器，3秒後恢復原狀
-        setTimeout(function() {
-            document.getElementById('pet').innerText = '( •_• )';
-            document.getElementById('pet-status').innerText = 'Bored';
-            document.getElementById('pet-status').style.color = '#2c3e50';
-        }, 3000); // 3000 毫秒 = 3 秒
+        setTimeout(() => {
+            body.setAttribute('fill', '#3498db');
+            mouth.setAttribute('d', 'M 40 65 Q 50 70 60 65'); // 恢復原狀
+            statusText.innerText = "Observing your circuit...";
+            statusText.style.color = "#34495e";
+            petSvg.style.transform = "scale(1)";
+        }, 2000);
     }
 </script>
+
+<style>
+    /* 增加一點平滑過場效果 */
+    #ee-pet {
+        transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    #pet-body, #pet-mouth {
+        transition: fill 0.3s, d 0.3s;
+    }
+</style>
