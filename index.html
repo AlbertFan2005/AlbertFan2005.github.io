@@ -160,74 +160,75 @@
 </div>
 
 
-    <div id="cat-companion" style="position: fixed; bottom: 20px; right: 20px; width: 150px; background: white; border: 1px solid #e1e4e8; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000; padding: 15px; text-align: center; font-family: sans-serif;">
+    <div id="pixel-cat-companion" style="position: fixed; bottom: 20px; right: 20px; width: 150px; background: white; border: 1px solid #e1e4e8; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000; padding: 15px; text-align: center; font-family: sans-serif;">
     
-    <p style="margin: 0 0 10px 0; font-size: 0.9em; font-weight: bold; color: #24292e;">Lab Cat</p>
+    <p style="margin: 0 0 10px 0; font-size: 0.9em; font-weight: bold; color: #24292e;">Pixel Lab Cat</p>
 
-    <svg id="analog-cat" width="80" height="80" viewBox="0 0 100 100" style="transition: transform 0.2s ease;">
-        <polygon points="20,40 30,10 45,30" fill="#7f8c8d" />
-        <polygon points="80,40 70,10 55,30" fill="#7f8c8d" />
-        <circle cx="50" cy="50" r="45" fill="#95a5a6" id="cat-body" />
-        <circle cx="35" cy="45" r="7" fill="white" />
-        <circle cx="65" cy="45" r="7" fill="white" />
-        <circle id="cat-pupil-l" cx="35" cy="45" r="4" fill="#2c3e50" />
-        <circle id="cat-pupil-r" cx="65" cy="45" r="4" fill="#2c3e50" />
-        <polygon points="50,60 46,55 54,55" fill="#e74c3c" />
-        <path id="cat-mouth" d="M 40 68 Q 50 73 60 68" stroke="#2c3e50" stroke-width="2" fill="none" />
-    </svg>
+    <div id="cat-image-container" style="display: flex; justify-content: center; align-items: center; height: 80px; transition: transform 0.2s ease;">
+        <img id="pixel-cat-img" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYzR5MzIybHdwZHF4czZtazRpMzRnZmpxc2Y3eHcycmpsamx5MzRmeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/MDJm7vFrf3p-8m6j4x/giphy.gif" 
+             alt="Pixel Art Cat" 
+             style="width: auto; height: 100%; image-rendering: pixelated;"> </div>
 
-    <button onclick="feedCatCaffeine()" style="margin-top: 10px; background: #e67e22; color: white; border: none; padding: 5px 15px; border-radius: 15px; cursor: pointer; font-size: 0.8em; font-weight: bold; transition: 0.3s;">
+    <button onclick="feedPixelCatCaffeine()" style="margin-top: 10px; background: #e67e22; color: white; border: none; padding: 5px 15px; border-radius: 15px; cursor: pointer; font-size: 0.8em; font-weight: bold; transition: 0.3s;">
         Feed ☕
     </button>
 </div>
 
 <script>
-    const cPupilL = document.getElementById('cat-pupil-l');
-    const cPupilR = document.getElementById('cat-pupil-r');
-    const cMouth = document.getElementById('cat-mouth');
-    const cBody = document.getElementById('cat-body');
-    const catSvg = document.getElementById('analog-cat');
+    const catContainer = document.getElementById('cat-image-container');
+    const catImg = document.getElementById('pixel-cat-img');
 
-    // 1. 滑鼠跟隨邏輯 (針對全螢幕)
+    // 1. 滑鼠跟隨邏輯：貓咪圖片會輕微縮放轉動，模擬「跟隨」
     document.addEventListener('mousemove', (e) => {
         const mouseX = e.clientX;
         const mouseY = e.clientY;
         
-        moveCatPupil(cPupilL, 35, 45, mouseX, mouseY);
-        moveCatPupil(cPupilR, 65, 45, mouseX, mouseY);
+        movePixelCat(catContainer, mouseX, mouseY);
     });
 
-    function moveCatPupil(pupil, centerX, centerY, mX, mY) {
-        const rect = pupil.getBoundingClientRect();
+    function movePixelCat(container, mX, mY) {
+        const rect = container.getBoundingClientRect();
         const pX = rect.left + rect.width / 2;
         const pY = rect.top + rect.height / 2;
         
         const angle = Math.atan2(mY - pY, mX - pX);
-        const distance = 3; // 瞳孔移動範圍
+        const rotation = angle * (180 / Math.PI) * 0.1; // 轉動幅度
         
-        const x = centerX + Math.cos(angle) * distance;
-        const y = centerY + Math.sin(angle) * distance;
-        
-        pupil.setAttribute('cx', x);
-        pupil.setAttribute('cy', y);
+        container.style.transform = `rotate(${rotation}deg)`;
     }
 
     // 2. 餵食咖啡因動畫
-    function feedCatCaffeine() {
-        // 變色 (亢奮橘)
-        cBody.setAttribute('fill', '#e67e22');
-        cMouth.setAttribute('d', 'M 40 68 Q 50 80 60 68'); // 嘴巴張大
-
-        // 貓咪放大震動
-        catSvg.style.transform = "scale(1.2) rotate(5deg)";
+    function feedPixelCatCaffeine() {
+        // 1. 貓咪快速震動
+        catContainer.style.animation = "shakeCat 0.5s ease-in-out infinite";
+        
+        // 2. 更改圖片效果 (例如加上咖啡橘色濾鏡)
+        catImg.style.filter = "sepia(1) saturate(10) hue-rotate(-15deg)";
         
         setTimeout(() => {
-            cBody.setAttribute('fill', '#95a5a6'); // 恢復原色 (灰色)
-            cMouth.setAttribute('d', 'M 40 68 Q 50 73 60 68'); // 嘴巴縮回
-            catSvg.style.transform = "scale(1) rotate(0deg)";
-        }, 1500); // 1.5 秒後恢復
+            // 3. 恢復原狀
+            catContainer.style.animation = "none";
+            catImg.style.filter = "none";
+        }, 2000); // 2 秒後恢復
     }
 </script>
+
+<style>
+    /* 貓咪震動的動畫定義 */
+    @keyframes shakeCat {
+        0% { transform: translate(1px, 1px) rotate(0deg); }
+        10% { transform: translate(-1px, -2px) rotate(-1deg); }
+        20% { transform: translate(-3px, 0px) rotate(1deg); }
+        30% { transform: translate(3px, 2px) rotate(0deg); }
+        40% { transform: translate(1px, -1px) rotate(1deg); }
+        50% { transform: translate(-1px, 2px) rotate(-1deg); }
+        60% { transform: translate(-3px, 1px) rotate(0deg); }
+        70% { transform: translate(3px, 1px) rotate(-1deg); }
+        80% { transform: translate(-1px, -1px) rotate(1deg); }
+        90% { transform: translate(1px, 2px) rotate(0deg); }
+        100% { transform: translate(1px, -2px) rotate(-1deg); }
+    }
+</style>
     
 </body>
 </html>
