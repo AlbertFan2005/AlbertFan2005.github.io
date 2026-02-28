@@ -160,7 +160,7 @@
 </div>
 
 
-    <div id="pixel-cat-companion" style="position: fixed; bottom: 20px; right: 20px; width: 150px; background: white; border: 1px solid #e1e4e8; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000; padding: 15px; text-align: center; font-family: sans-serif;">
+<div id="pixel-cat-companion" style="position: fixed; bottom: 20px; right: 20px; width: 150px; background: white; border: 1px solid #e1e4e8; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000; padding: 15px; text-align: center; font-family: sans-serif;">
     
     <p style="margin: 0 0 10px 0; font-size: 0.9em; font-weight: bold; color: #24292e;">My Lab Cat</p>
 
@@ -209,6 +209,12 @@
         80% { transform: translate(-1px, -1px) rotate(1deg); }
         90% { transform: translate(1px, 2px) rotate(0deg); }
         100% { transform: translate(1px, -2px) rotate(-1deg); }
+    }
+    
+    @media (max-width: 600px) {
+    #pixel-cat-companion {
+        display: none !important; /* 在手機螢幕下完全隱藏，不遮擋內容 */
+        }
     }
 </style>
     
