@@ -159,63 +159,45 @@
     © 2026 Albert Fan. Built with GitHub Pages.
 </div>
 
-</body>
-</html>
 
-<div class="section">
-    <h2>My Digital EE Companion</h2>
-    <p>This is my virtual lab partner. It loves caffeine.</p>
+    <div id="cat-companion" style="position: fixed; bottom: 20px; right: 20px; width: 150px; background: white; border: 1px solid #e1e4e8; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000; padding: 15px; text-align: center; font-family: sans-serif;">
     
-    <div style="text-align: center; background: #f1f8ff; padding: 20px; border-radius: 8px; border: 1px solid #d6eaf8;">
-        <div id="pet" style="font-size: 5em; margin-bottom: 15px;">( •_• )</div>
-        
-        <p>Status: <span id="pet-status" style="font-weight: bold; color: #2c3e50;">Bored</span></p>
-        
-        <button onclick="feedCaffeine()" style="background: #e67e22; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">
-            Feed Caffeine ☕
-        </button>
-    </div>
-</div>
+    <p style="margin: 0 0 10px 0; font-size: 0.9em; font-weight: bold; color: #24292e;">Lab Cat</p>
 
-<div class="section" style="text-align: center; overflow: hidden;">
-    <h2>My Lab Companion</h2>
-    <p>Try feeding it some caffeine!</p>
-    
-    <div id="pet-container" style="position: relative; height: 200px; display: flex; justify-content: center; align-items: center;">
-        <svg id="ee-pet" width="120" height="120" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="45" fill="#3498db" id="pet-body" />
-            <circle cx="35" cy="40" r="8" fill="white" />
-            <circle cx="65" cy="40" r="8" fill="white" />
-            <circle id="pupil-l" cx="35" cy="40" r="4" fill="#2c3e50" />
-            <circle id="pupil-r" cx="65" cy="40" r="4" fill="#2c3e50" />
-            <path id="pet-mouth" d="M 40 65 Q 50 70 60 65" stroke="#2c3e50" stroke-width="2" fill="none" />
-        </svg>
-    </div>
+    <svg id="analog-cat" width="80" height="80" viewBox="0 0 100 100" style="transition: transform 0.2s ease;">
+        <polygon points="20,40 30,10 45,30" fill="#7f8c8d" />
+        <polygon points="80,40 70,10 55,30" fill="#7f8c8d" />
+        <circle cx="50" cy="50" r="45" fill="#95a5a6" id="cat-body" />
+        <circle cx="35" cy="45" r="7" fill="white" />
+        <circle cx="65" cy="45" r="7" fill="white" />
+        <circle id="cat-pupil-l" cx="35" cy="45" r="4" fill="#2c3e50" />
+        <circle id="cat-pupil-r" cx="65" cy="45" r="4" fill="#2c3e50" />
+        <polygon points="50,60 46,55 54,55" fill="#e74c3c" />
+        <path id="cat-mouth" d="M 40 68 Q 50 73 60 68" stroke="#2c3e50" stroke-width="2" fill="none" />
+    </svg>
 
-    <p>Status: <span id="pet-status" style="font-weight: bold; color: #34495e;">Observing your circuit...</span></p>
-    
-    <button onclick="feedCaffeine()" style="background: #e67e22; color: white; border: none; padding: 10px 25px; border-radius: 20px; cursor: pointer; font-weight: bold; transition: 0.3s;">
-        Give Caffeine ☕
+    <button onclick="feedCatCaffeine()" style="margin-top: 10px; background: #e67e22; color: white; border: none; padding: 5px 15px; border-radius: 15px; cursor: pointer; font-size: 0.8em; font-weight: bold; transition: 0.3s;">
+        Feed ☕
     </button>
 </div>
 
 <script>
-    const pupilL = document.getElementById('pupil-l');
-    const pupilR = document.getElementById('pupil-r');
-    const mouth = document.getElementById('pet-mouth');
-    const body = document.getElementById('pet-body');
-    const statusText = document.getElementById('pet-status');
+    const cPupilL = document.getElementById('cat-pupil-l');
+    const cPupilR = document.getElementById('cat-pupil-r');
+    const cMouth = document.getElementById('cat-mouth');
+    const cBody = document.getElementById('cat-body');
+    const catSvg = document.getElementById('analog-cat');
 
-    // 1. 滑鼠跟隨邏輯：讓瞳孔跟著滑鼠轉動
+    // 1. 滑鼠跟隨邏輯 (針對全螢幕)
     document.addEventListener('mousemove', (e) => {
         const mouseX = e.clientX;
         const mouseY = e.clientY;
         
-        movePupil(pupilL, 35, 40, mouseX, mouseY);
-        movePupil(pupilR, 65, 40, mouseX, mouseY);
+        moveCatPupil(cPupilL, 35, 45, mouseX, mouseY);
+        moveCatPupil(cPupilR, 65, 45, mouseX, mouseY);
     });
 
-    function movePupil(pupil, centerX, centerY, mX, mY) {
+    function moveCatPupil(pupil, centerX, centerY, mX, mY) {
         const rect = pupil.getBoundingClientRect();
         const pX = rect.left + rect.width / 2;
         const pY = rect.top + rect.height / 2;
@@ -230,34 +212,22 @@
         pupil.setAttribute('cy', y);
     }
 
-    // 2. 餵食咖啡因的進階動畫
-    function feedCaffeine() {
-        // 變色並張大嘴巴
-        body.setAttribute('fill', '#e67e22');
-        mouth.setAttribute('d', 'M 40 65 Q 50 80 60 65'); // 嘴巴變大
-        statusText.innerText = "HYPER MODE ACTIVATED! ⚡";
-        statusText.style.color = "#e67e22";
+    // 2. 餵食咖啡因動畫
+    function feedCatCaffeine() {
+        // 變色 (亢奮橘)
+        cBody.setAttribute('fill', '#e67e22');
+        cMouth.setAttribute('d', 'M 40 68 Q 50 80 60 68'); // 嘴巴張大
 
-        // 寵物震動效果
-        const petSvg = document.getElementById('ee-pet');
-        petSvg.style.transform = "scale(1.2)";
+        // 貓咪放大震動
+        catSvg.style.transform = "scale(1.2) rotate(5deg)";
         
         setTimeout(() => {
-            body.setAttribute('fill', '#3498db');
-            mouth.setAttribute('d', 'M 40 65 Q 50 70 60 65'); // 恢復原狀
-            statusText.innerText = "Observing your circuit...";
-            statusText.style.color = "#34495e";
-            petSvg.style.transform = "scale(1)";
-        }, 2000);
+            cBody.setAttribute('fill', '#95a5a6'); // 恢復原色 (灰色)
+            cMouth.setAttribute('d', 'M 40 68 Q 50 73 60 68'); // 嘴巴縮回
+            catSvg.style.transform = "scale(1) rotate(0deg)";
+        }, 1500); // 1.5 秒後恢復
     }
 </script>
-
-<style>
-    /* 增加一點平滑過場效果 */
-    #ee-pet {
-        transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-    #pet-body, #pet-mouth {
-        transition: fill 0.3s, d 0.3s;
-    }
-</style>
+    
+</body>
+</html>
