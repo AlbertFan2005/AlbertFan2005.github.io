@@ -162,7 +162,7 @@
 
     <div id="pixel-cat-companion" style="position: fixed; bottom: 20px; right: 20px; width: 150px; background: white; border: 1px solid #e1e4e8; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000; padding: 15px; text-align: center; font-family: sans-serif;">
     
-    <p style="margin: 0 0 10px 0; font-size: 0.9em; font-weight: bold; color: #24292e;">Pixel Lab Cat</p>
+    <p style="margin: 0 0 10px 0; font-size: 0.9em; font-weight: bold; color: #24292e;">My Lab Cat</p>
 
     <div id="cat-image-container" style="display: flex; justify-content: center; align-items: center; height: 80px; transition: transform 0.2s ease;">
         <img id="pixel-cat-img" src="https://newscrewdriver.files.wordpress.com/2018/10/poptartcat320240.gif" 
@@ -178,26 +178,8 @@
     const catContainer = document.getElementById('cat-image-container');
     const catImg = document.getElementById('pixel-cat-img');
 
-    // 1. 滑鼠跟隨邏輯：貓咪圖片會輕微縮放轉動，模擬「跟隨」
-    document.addEventListener('mousemove', (e) => {
-        const mouseX = e.clientX;
-        const mouseY = e.clientY;
-        
-        movePixelCat(catContainer, mouseX, mouseY);
-    });
 
-    function movePixelCat(container, mX, mY) {
-        const rect = container.getBoundingClientRect();
-        const pX = rect.left + rect.width / 2;
-        const pY = rect.top + rect.height / 2;
-        
-        const angle = Math.atan2(mY - pY, mX - pX);
-        const rotation = angle * (180 / Math.PI) * 0.1; // 轉動幅度
-        
-        container.style.transform = `rotate(${rotation}deg)`;
-    }
-
-    // 2. 餵食咖啡因動畫
+    //  餵食咖啡因動畫
     function feedPixelCatCaffeine() {
         // 1. 貓咪快速震動
         catContainer.style.animation = "shakeCat 0.5s ease-in-out infinite";
