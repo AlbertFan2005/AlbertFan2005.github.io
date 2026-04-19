@@ -78,18 +78,34 @@
             </div>
         </section>
 
-        <section id="characterization">
-            <h2>Material Characterization</h2>
-            <p>To verify the quality and morphology of the graphene, we conducted surface analysis using high-resolution microscopy.</p>
-
-            <div class="btn-group">
-                <button onclick="updateImage('fesem')">View FESEM</button>
-                <button onclick="updateImage('setup')">View Setup Diagram</button>
+        <section id="analysis-specs" style="margin-top: 40px; border-top: 1px solid #eaecef; padding-top: 20px;">
+            <h2>Material Analysis & Technical Specifications</h2>
+            <p>Instead of raw laboratory snapshots, the following key metrics define the quality and sensing potential of our synthesized multilayer graphene.</p>
+        
+            <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px;">
+                
+                <div style="flex: 1; min-width: 250px; border: 1px solid #e1e4e8; padding: 20px; border-radius: 8px; background: #fff;">
+                    <h4 style="margin-top: 0; color: #0366d6;">🔬 Optical Inspection</h4>
+                    <ul style="font-size: 0.9em; padding-left: 20px; margin-bottom: 0;">
+                        <li><strong>Coverage:</strong> Continuous film over 95% of target substrate.</li>
+                        <li><strong>Uniformity:</strong> Consistent multilayer stack confirmed via contrast analysis.</li>
+                    </ul>
+                </div>
+        
+                <div style="flex: 1; min-width: 250px; border: 1px solid #e1e4e8; padding: 20px; border-radius: 8px; background: #fff;">
+                    <h4 style="margin-top: 0; color: #0366d6;">📊 Raman Characteristics</h4>
+                    <ul style="font-size: 0.9em; padding-left: 20px; margin-bottom: 0;">
+                        <li><strong>ID/IG Ratio:</strong> Minimal D-peak indicating low defect density.</li>
+                        <li><strong>Layer Count:</strong> I2D/IG ratio consistent with stable multilayer graphene.</li>
+                    </ul>
+                </div>
+        
             </div>
-
-            <div class="img-box">
-                <img id="dynamic-img" src="fesem_view.jpg" alt="Analysis Image">
-                <p id="dynamic-caption" class="caption">Figure 2: FESEM image showcasing the multilayer graphene morphology.</p>
+        
+            <div style="margin-top: 25px; background: #f6f8fa; padding: 20px; border-radius: 8px; border: 1px dashed #0366d6;">
+                <p style="margin: 0; font-size: 0.95em;">
+                    <strong>Why these metrics matter:</strong> These material properties directly influence the <strong>input impedance</strong> and <strong>linearity</strong> of the analog readout circuit I am designing.
+                </p>
             </div>
         </section>
 
