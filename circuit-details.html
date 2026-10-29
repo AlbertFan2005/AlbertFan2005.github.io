@@ -3,26 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Circuit Design Details - Albert Fan</title>
-    <link rel="stylesheet" href="style.css"> </head>
-<body style="font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #24292e;">
-    
-    <a href="index.html" style="text-decoration: none; color: #0366d6;">← Back to Home</a>
-    
-    <h1 style="border-bottom: 1px solid #eaecef; padding-bottom: 10px; margin-top: 20px;">Circuit Design & PCB Layout</h1>
-    
-    <div class="section">
-        <h2>Analog Readout Circuit for Graphene Sensor</h2>
-        <p>這部分可以描述你如何設計電路來讀取石墨烯感測器的信號。你可以放 LTspice 的截圖：</p>
-        </div>
+    <title>Graphene Sensor Circuit | Albert Fan</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.6; color: #24292e; max-width: 850px; margin: 0 auto; padding: 40px 20px; background: #fafbfc; }
+        .container { background: #fff; border: 1px solid #e1e4e8; border-radius: 8px; padding: 30px; box-shadow: 0 2px 10px rgba(0,0,0,.05); }
+        h1 { color: #0366d6; border-bottom: 1px solid #eaecef; padding-bottom: 10px; }
+        h2 { margin-top: 30px; color: #24292e; }
+        .back { color: #0366d6; text-decoration: none; }
+        .card { background: #f6f8fa; border-left: 4px solid #0366d6; padding: 16px 20px; margin: 18px 0; }
+        .path { font-family: Consolas, monospace; overflow-wrap: anywhere; }
+        li { margin: 8px 0; }
+    </style>
+</head>
+<body>
+    <a class="back" href="index.html">← Back to Home</a>
+    <main class="container">
+        <h1>Analog Readout Circuit for a Graphene Sensor</h1>
+        <p>This circuit is being developed to read resistance changes from a graphene piezoresistive sensor during vibration testing. The design connects the sensor measurement to an analog signal that can be observed and analyzed.</p>
 
-    <div class="section">
-        <h2>PCB Design (EasyEDA)</h2>
-        <p>描述你如何使用 EasyEDA 進行硬體佈線與實作。</p>
-        </div>
+        <h2>Signal Path</h2>
+        <div class="card path"><strong>Graphene sensor → Wheatstone bridge → RC stage → AD8221 instrumentation amplifier → 1–15 Hz band-pass filter</strong></div>
+        <ul>
+            <li><strong>Wheatstone bridge:</strong> Converts a small sensor resistance change into a differential voltage.</li>
+            <li><strong>RC stage:</strong> Conditions the bridge signal before amplification.</li>
+            <li><strong>AD8221:</strong> Amplifies the differential signal for measurement.</li>
+            <li><strong>Band-pass filter:</strong> Keeps the frequency range of interest for the vibration measurements.</li>
+        </ul>
 
-    <div class="footer" style="margin-top: 50px; border-top: 1px solid #eaecef; padding-top: 20px; font-size: 0.8em; color: #586069;">
-        © 2026 Albert Fan.
-    </div>
+        <h2>Sensor and Measurement</h2>
+        <p>The graphene film is transferred onto a PET substrate with interdigitated electrodes. Raman spectroscopy and Hall measurements are used to characterize the graphene. The readout circuit is intended to measure resistance changes while the sensor is exposed to cyclic vibration.</p>
+
+        <h2>Design Work</h2>
+        <p>The circuit and PCB are designed in EasyEDA. LTspice is used to study circuit behavior before hardware implementation. The current page describes the design approach; measured performance results will be added after they are confirmed.</p>
+
+        <div class="card"><strong>Current scope:</strong> circuit design and prototype development. No gain, noise, or stability values are reported here because validated measurements have not been provided.</div>
+    </main>
 </body>
 </html>
