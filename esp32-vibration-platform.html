@@ -10,7 +10,13 @@
         h1 { color: #0366d6; border-bottom: 1px solid #eaecef; padding-bottom: 10px; }
         h2 { margin-top: 30px; color: #24292e; }
         .back { color: #0366d6; text-decoration: none; }
-        .card { background: #f6f8fa; border-left: 4px solid #0366d6; padding: 16px 20px; margin: 18px 0; }
+        .interface-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; max-width: 680px; margin: 24px auto; }
+        .interface-grid figure { margin: 0; min-width: 0; }
+        .interface-frame { aspect-ratio: 1054 / 1530; overflow: hidden; border: 1px solid #e1e4e8; border-radius: 10px; background: #f2f7fa; }
+        .interface-frame img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+        .interface-frame.session img { object-fit: cover; object-position: center; background: #91999e; }
+        figcaption { font-size: .9rem; color: #586069; margin-top: 10px; line-height: 1.5; }
+        @media (max-width: 600px) { .interface-grid { grid-template-columns: 1fr; max-width: 320px; } .container { padding: 22px; } }
         code { background: #f1f8ff; padding: 2px 5px; border-radius: 4px; }
         li { margin: 8px 0; }
     </style>
@@ -37,10 +43,24 @@
             <li>Save named sessions in a history view for later review.</li>
         </ul>
 
+        <h2>Web Control Interface</h2>
+        <div class="interface-grid">
+            <figure>
+                <div class="interface-frame">
+                    <img src="esp32-control-interface.jpg" alt="ESP32 browser control interface with frequency set to 5 Hz and duration set to 10 seconds." loading="lazy" width="1054" height="2048">
+                </div>
+                <figcaption><strong>Motor control.</strong> Frequency and duration settings, shown at 5 Hz for 10 seconds.</figcaption>
+            </figure>
+            <figure>
+                <div class="interface-frame session">
+                    <img src="esp32-save-session.jpg" alt="Save Session dialog with sample name, notes, and settings of 5 Hz for 10 seconds." loading="lazy" width="1055" height="2047">
+                </div>
+                <figcaption><strong>Session records.</strong> Save a sample name and notes with the selected settings.</figcaption>
+            </figure>
+        </div>
+
         <h2>Implementation Notes</h2>
-        <p>The motor driver and ESP32 share a common ground. The motor speed is controlled through PWM, while the MPU-6050 communicates with the ESP32 over I²C using GPIO 21 (SDA) and GPIO 22 (SCL).</p>
-        <div class="card"><strong>Example operating point:</strong> 5 Hz for 10 minutes. The interface also supports other settings within the 1–20 Hz range.</div>
-        <p>The project brings together embedded control, sensor data collection, and a simple web interface. Calibration and comparison against an independent measurement instrument are needed before treating the reported motion values as validated measurements.</p>
+        <p>The ESP32 controls the motor through PWM and communicates with the MPU-6050 over I²C.</p>
     </main>
 </body>
 </html>
