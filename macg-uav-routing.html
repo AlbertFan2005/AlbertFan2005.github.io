@@ -73,7 +73,7 @@
             <p class="supervisor"><em>Supervised by Professor Chih-Min Yu</em></p>
             <h1>MACG: Mobility-Aware Clustered Routing for UAV Networks</h1>
             <p class="intro">How can grouping mobile UAVs help data reach its destination? This team project studies Mobility-Aware Clustered Greedy Routing (MACG) and compares it with DSDV, Greedy, QGeo, and CR-QGeo using Python-based simulation.</p>
-            <nav class="page-nav" aria-label="On this page"><a href="#contribution">My Contribution</a><a href="#mechanism">How MACG Works</a><a href="#experiments">Experiments</a><a href="#findings">Findings</a><a href="#sources">Code &amp; Sources</a></nav>
+            <nav class="page-nav" aria-label="On this page"><a href="#contribution">My Contribution</a><a href="#mechanism">How MACG Works</a><a href="#protocols">Compared Protocols</a><a href="#experiments">Experiments</a><a href="#findings">Findings</a><a href="#sources">Code &amp; Sources</a></nav>
         </header>
         <section class="chapter" id="contribution">
             <h2>My Contribution</h2>
@@ -94,6 +94,19 @@
                 <div class="step"><h3>04 · Maintain Connections</h3><p>Update cluster membership and gateway relationships as UAVs move and links change.</p></div>
             </div>
             <p class="source">Implementation: <a href="https://github.com/Derek46518/UavNetSimTest1/blob/main/routing/macg/macg.py">MACG forwarding</a> and <a href="https://github.com/Derek46518/UavNetSimTest1/blob/main/routing/macg/macg_cluster_manager.py">cluster management</a>. The repository describes the implementation as GMDC-inspired.</p>
+        </section>
+        <section class="chapter" id="protocols">
+            <h2>Compared Protocols</h2>
+            <div class="table-wrap"><table>
+                <thead><tr><th scope="col">Protocol</th><th scope="col">Routing approach</th></tr></thead>
+                <tbody>
+                    <tr><th scope="row">DSDV</th><td>Proactively maintains routing tables and exchanges route updates.</td></tr>
+                    <tr><th scope="row">Greedy</th><td>Forwards packets to a neighbor closer to the destination.</td></tr>
+                    <tr><th scope="row">QGeo</th><td>Uses Q-learning and forwarding feedback to learn next-hop choices.</td></tr>
+                    <tr><th scope="row">CR-QGeo</th><td>Extends QGeo with congestion-aware rewards and a link-stability-based discount factor.</td></tr>
+                    <tr><th scope="row">MACG</th><td>Organizes UAVs into mobility-aware clusters, using cluster heads, gateways, and Greedy forwarding.</td></tr>
+                </tbody>
+            </table></div>
         </section>
         <section class="chapter" id="experiments">
             <h2>Experimental Design &amp; Iteration</h2>
@@ -137,15 +150,14 @@
             <p>In the 120-second speed sweep, Greedy led PDR at every tested speed. MACG's PDR was lowest at 20 m/s (23.30%) and higher at 30 and 40 m/s (38.84% and 40.99%). The report relates this non-monotonic pattern to clustering dynamics; it does not establish that MACG always improves with speed.</p>
             <h3>Read Delivery and Delay Together</h3>
             <p>Average delay describes delivered packets. A protocol can report a low delay while delivering very few packets, so delay alone does not indicate a better network.</p>
-            <p class="source">Results and mechanism-based interpretations are from the team's <a href="https://github.com/Derek46518/UavNetSimTest1/blob/main/ExperimentAB_120s_Summary.md">120-second summary</a> and <a href="https://github.com/Derek46518/UavNetSimTest1/blob/main/ExperimentD.md">map-size study</a>. These are observations from this simulator and a single seed, not general performance guarantees.</p>
+
         </section>
         <section class="chapter" id="sources">
             <h2>Code &amp; Sources</h2>
             <ul>
                 <li><a href="https://github.com/Derek46518/UavNetSimTest1">Team repository — Derek46518/UavNetSimTest1</a></li>
                 <li><a href="https://github.com/Derek46518/UavNetSimTest1/blob/main/routing/macg/macg.py">MACG implementation</a></li>
-                <li><a href="https://github.com/Derek46518/UavNetSimTest1/blob/main/results/120s/ExperimentA_120s.csv">UAV-count results (CSV)</a> · <a href="https://github.com/Derek46518/UavNetSimTest1/blob/main/results/120s/ExperimentB_120s.csv">speed results (CSV)</a></li>
-                <li><a href="https://github.com/Derek46518/UavNetSimTest1/blob/main/tools/run_scenario.py">Scenario runner</a> · <a href="https://github.com/Derek46518/UavNetSimTest1/blob/main/tools/build_reports.py">report builder</a></li>
+
                 <li><a href="https://github.com/Zihao-Felix-Zhou/UavNetSim-v1">Original UavNetSim-v1 platform</a> — the simulation foundation, developed by its original authors.</li>
             </ul>
         </section>
