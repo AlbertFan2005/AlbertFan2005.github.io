@@ -33,7 +33,11 @@
         .wide-figure { max-width: 560px; margin: 20px auto 0; }
         .wide-figure img { max-height: 500px; }
         .pcb-figure { max-width: 520px; }
-        .media-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; margin-top: 20px; align-items: start; }
+        .media-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; margin-top: 20px; align-items: stretch; }
+        .media-grid .image-panel { display: flex; flex-direction: column; }
+        .media-grid figcaption { margin-top: auto; padding-top: 10px; }
+        .diagram-frame { aspect-ratio: 590 / 350; display: flex; align-items: center; justify-content: center; }
+        .diagram-frame img { width: 100%; height: 100%; max-height: none; object-fit: contain; }
         .photo-crop { position: relative; overflow: hidden; width: 100%; background: #f6f8fa; border-radius: 4px; }
         .photo-crop img { position: absolute; max-width: none; max-height: none; margin: 0; height: auto; }
         .cvd-crop { aspect-ratio: 590 / 350; }
@@ -66,7 +70,7 @@
                     <figcaption>APCVD laboratory setup.</figcaption>
                 </figure>
                 <figure class="image-panel">
-                    <img src="apcvd_schematic.jpg" alt="APCVD system schematic" loading="lazy" decoding="async">
+                    <div class="diagram-frame"><img src="apcvd_schematic.jpg" alt="APCVD system schematic" loading="lazy" decoding="async"></div>
                     <figcaption>Schematic of the APCVD system.</figcaption>
                 </figure>
             </div>
