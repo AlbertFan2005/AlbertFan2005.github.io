@@ -40,8 +40,8 @@
             <h3 id="schematic-0">1. System Overview</h3>
             <p>The diagram shows the four signal-processing stages and their power modules. The bridge output passes through the RC filter and AD8221 before reaching the band-pass stage.</p>
             <figure>
-                <a href="circuit-overview.jpg" target="_blank" rel="noopener noreferrer"><img src="circuit-overview.jpg" alt="Block diagram of the Wheatstone bridge, RC filter, AD8221 amplifier, band-pass filter and power modules" width="1043" height="588" loading="lazy" decoding="async"></a>
-                <figcaption>System Overview. Select the image to view it at full size.</figcaption>
+                <img src="circuit-overview.jpg" alt="Block diagram of the Wheatstone bridge, RC filter, AD8221 amplifier, band-pass filter and power modules" width="1043" height="588" loading="lazy" decoding="async">
+                <figcaption>System Overview.</figcaption>
             </figure>
         </section>
 
@@ -49,8 +49,8 @@
             <h3 id="schematic-1">2. Wheatstone Bridge</h3>
             <p>Three fixed 2 kΩ resistors form a bridge with the sensor resistance Rx. In the shown simulation setup, Rx = 2000 + 100 sin(2π × 5t) Ω. This represents a 5 Hz resistance variation with a 100 Ω amplitude around 2 kΩ; it is a simulation input, not a measured sensor response.</p>
             <figure>
-                <a href="circuit-bridge.jpg" target="_blank" rel="noopener noreferrer"><img src="circuit-bridge.jpg" alt="Wheatstone bridge with three 2 kiloohm resistors and a simulated variable sensor resistance" width="1325" height="507" loading="lazy" decoding="async"></a>
-                <figcaption>Wheatstone Bridge. Select the image to view it at full size.</figcaption>
+                <img src="circuit-bridge.jpg" alt="Wheatstone bridge with three 2 kiloohm resistors and a simulated variable sensor resistance" width="1325" height="507" loading="lazy" decoding="async">
+                <figcaption>Wheatstone Bridge.</figcaption>
             </figure>
         </section>
 
@@ -58,8 +58,8 @@
             <h3 id="schematic-2">3. Input RC Filter</h3>
             <p>The passive input network uses two 10 kΩ series resistors, a 470 nF capacitor between the signal lines, and a 47 nF capacitor from each line to ground. It filters the bridge signal before amplification.</p>
             <figure>
-                <a href="circuit-rc-filter.jpg" target="_blank" rel="noopener noreferrer"><img src="circuit-rc-filter.jpg" alt="Differential RC filter with two 10 kiloohm resistors, a 470 nanofarad differential capacitor and two 47 nanofarad capacitors to ground" width="1042" height="612" loading="lazy" decoding="async"></a>
-                <figcaption>Input RC Filter. Select the image to view it at full size.</figcaption>
+                <img src="circuit-rc-filter.jpg" alt="Differential RC filter with two 10 kiloohm resistors, a 470 nanofarad differential capacitor and two 47 nanofarad capacitors to ground" width="1042" height="612" loading="lazy" decoding="async">
+                <figcaption>Input RC Filter.</figcaption>
             </figure>
         </section>
 
@@ -67,8 +67,8 @@
             <h3 id="schematic-3">4. AD8221 Instrumentation Amplifier</h3>
             <p>The AD8221 amplifies the differential signal. The gain resistor is <strong>499 Ω</strong>. Using the <a href="https://www.analog.com/media/en/technical-documentation/data-sheets/AD8221.pdf" target="_blank" rel="noopener noreferrer">AD8221 datasheet</a> equation, the nominal amplifier gain is approximately <strong>100 V/V</strong>.</p><p class="formula"><strong>G = 1 + 49,400 / 499 ≈ 100</strong></p><p>This is the calculated gain of the AD8221 stage, not the measured gain of the complete signal chain. The schematic also includes 1 kΩ input resistors, 100 nF input capacitors, and 0.1 μF / 1 μF supply decoupling capacitors.</p>
             <figure>
-                <a href="circuit-ad8221.jpg" target="_blank" rel="noopener noreferrer"><img src="circuit-ad8221.jpg" alt="AD8221 instrumentation amplifier with a 499 ohm gain resistor, input RC networks and supply decoupling" width="731" height="603" loading="lazy" decoding="async"></a>
-                <figcaption>AD8221 Instrumentation Amplifier. Select the image to view it at full size.</figcaption>
+                <img src="circuit-ad8221.jpg" alt="AD8221 instrumentation amplifier with a 499 ohm gain resistor, input RC networks and supply decoupling" width="731" height="603" loading="lazy" decoding="async">
+                <figcaption>AD8221 Instrumentation Amplifier.</figcaption>
             </figure>
         </section>
 
@@ -76,8 +76,8 @@
             <h3 id="schematic-4">5. Active Band-Pass Filter</h3>
             <p>The circuit combines active high-pass and low-pass sections, followed by a 22 μF output coupling capacitor and a 10 kΩ resistor. The schematic shows 1 μF filter capacitors, 150 kΩ / 100 kΩ resistors in the first section, and 5.3 kΩ resistors in the second. The 1–15 Hz range is the design target; the complete response remains to be verified.</p>
             <figure>
-                <a href="circuit-bandpass.jpg" target="_blank" rel="noopener noreferrer"><img src="circuit-bandpass.jpg" alt="Two op amp active band-pass filter with high-pass and low-pass sections and AC-coupled output" width="1406" height="600" loading="lazy" decoding="async"></a>
-                <figcaption>Active Band-Pass Filter. Select the image to view it at full size.</figcaption>
+                <img src="circuit-bandpass.jpg" alt="Two op amp active band-pass filter with high-pass and low-pass sections and AC-coupled output" width="1406" height="600" loading="lazy" decoding="async">
+                <figcaption>Active Band-Pass Filter.</figcaption>
             </figure>
         </section>
 
@@ -87,7 +87,15 @@
         <h2>Design Work</h2>
         <p>The circuit and PCB are designed in EasyEDA. LTspice is used to study circuit behavior before hardware implementation. The current page describes the design approach; measured performance results will be added after they are confirmed.</p>
 
-        <div class="card"><strong>Current scope:</strong> circuit design and prototype development. The AD8221 gain shown above is calculated from the 499 Ω resistor. Measured gain, noise, frequency response, and stability results will be added after validation.</div>
+
+        <figure>
+            <img src="circuit-pcb-3d.jpg" alt="PCB 3D design preview showing AD8221 and TL082 component placement" width="2048" height="1536" loading="lazy" decoding="async">
+            <figcaption>PCB 3D preview.</figcaption>
+        </figure>
+        <figure>
+            <img src="circuit-full-schematic.jpg" alt="Complete circuit schematic including power supplies, bridge, input filters, AD8221 and active filter" width="888" height="805" loading="lazy" decoding="async">
+            <figcaption>Complete circuit schematic.</figcaption>
+        </figure>
     </main>
 </body>
 </html>
