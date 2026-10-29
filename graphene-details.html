@@ -3,137 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Graphene Research Details - Albert Fan</title>
+    <title>Graphene Research Details | Albert Fan</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.6; color: #24292e; max-width: 850px; margin: 0 auto; padding: 40px 20px; background-color: #fafbfc; }
-        .container { background: #fff; border: 1px solid #e1e4e8; border-radius: 8px; padding: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        h1 { border-bottom: 1px solid #eaecef; padding-bottom: 10px; color: #0366d6; }
-        h2 { margin-top: 30px; color: #24292e; display: flex; align-items: center; }
-        nav { margin: 20px 0; padding: 10px; background: #f1f8ff; border-radius: 6px; }
-        nav a { margin-right: 15px; text-decoration: none; color: #0366d6; font-weight: bold; font-size: 0.9em; }
-        nav a:hover { text-decoration: underline; }
-        .img-box { margin: 20px 0; text-align: center; border: 1px solid #ddd; padding: 10px; border-radius: 6px; background: #fff; }
-        .img-box img { max-width: 100%; height: auto; border-radius: 4px; display: block; margin: 0 auto; }
-        .caption { font-size: 0.85em; color: #586069; margin-top: 10px; font-style: italic; }
-        .back-link { text-decoration: none; color: #0366d6; font-size: 0.9em; margin-bottom: 20px; display: inline-block; }
-        .btn-group { margin: 15px 0; }
-        button { padding: 6px 12px; border: 1px solid #0366d6; background: #fff; color: #0366d6; border-radius: 4px; cursor: pointer; margin-right: 5px; }
-        button:hover { background: #0366d6; color: #fff; }
-        section { scroll-margin-top: 20px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.6; color: #24292e; max-width: 850px; margin: 0 auto; padding: 40px 20px; background: #fafbfc; }
+        .container { background: #fff; border: 1px solid #e1e4e8; border-radius: 8px; padding: 30px; box-shadow: 0 2px 10px rgba(0,0,0,.05); }
+        h1 { color: #0366d6; border-bottom: 1px solid #eaecef; padding-bottom: 10px; }
+        h2 { margin-top: 32px; color: #24292e; }
+        .back { color: #0366d6; text-decoration: none; }
+        .figure { margin: 20px 0; padding: 12px; text-align: center; border: 1px solid #e1e4e8; border-radius: 6px; background: #fff; }
+        .figure img { display: block; max-width: 100%; max-height: 420px; margin: 0 auto; object-fit: contain; }
+        .caption { color: #586069; font-size: .9em; margin: 10px 0 0; }
+        .note { background: #f6f8fa; border-left: 4px solid #0366d6; padding: 14px 18px; margin: 20px 0; }
+        li { margin: 8px 0; }
     </style>
 </head>
 <body>
+    <a class="back" href="index.html">← Back to Home</a>
+    <main class="container">
+        <h1>Electromechanical Stability of Transfer-Induced Multilayer Graphene</h1>
+        <p>This project studies the fabrication and testing of multilayer graphene for a flexible piezoresistive sensor. The work combines graphene growth and transfer, material characterization, analog readout, and cyclic vibration testing.</p>
+        <p><em>Supervised by Professor Danny Wen-Yaw Chung</em></p>
 
-    <a href="index.html" class="back-link">← Back to Dashboard</a>
+        <h2>Graphene Growth</h2>
+        <p>Graphene is grown on copper foil by atmospheric-pressure chemical vapor deposition (APCVD), using camphor as the carbon source.</p>
+        <div class="figure">
+            <img src="apcvd_lab.jpg" alt="APCVD laboratory setup">
+            <p class="caption">APCVD laboratory setup.</p>
+        </div>
+        <div class="figure">
+            <img src="apcvd_schematic.jpg" alt="APCVD system schematic">
+            <p class="caption">Schematic of the APCVD system.</p>
+        </div>
 
-    <div class="container">
-        <h1>Graphene Research: Electromechanical Stability</h1>
-        <p>This page documents the experimental process and material analysis for the transfer-induced multilayer graphene research.</p>
+        <h2>Transfer and Sensor Structure</h2>
+        <p>A PMMA support layer is used during transfer. After the copper is etched, the graphene is transferred onto a PET substrate with interdigitated electrodes. The flexible sensor is designed to convert mechanical strain into a resistance change.</p>
+        <div class="figure">
+            <img src="op_flow.jpg" alt="Graphene experimental process flow">
+            <p class="caption">Experimental process flow.</p>
+        </div>
 
-        <nav>
-            <a href="#synthesis">Synthesis</a>
-            <a href="#characterization">Characterization</a>
-            <a href="#testing">Cyclic Testing</a>
-        </nav>
+        <h2>Characterization and Testing Plan</h2>
+        <ul>
+            <li><strong>Raman spectroscopy:</strong> Used to examine the graphene structure and defect-related features.</li>
+            <li><strong>Hall measurement:</strong> Used to characterize electrical properties.</li>
+            <li><strong>Cyclic vibration testing:</strong> Used to study resistance response and stability during repeated mechanical motion.</li>
+        </ul>
+        <p>The analog readout circuit is described on the <a href="circuit-details.html">circuit design page</a>. The vibration platform and its control interface are described on the <a href="esp32-vibration-platform.html">ESP32 project page</a>.</p>
 
-        <section id="synthesis">
-            <h2>Synthesis & Experimental Methodology</h2>
-            <p>Using <strong>Atmospheric Pressure Chemical Vapor Deposition (APCVD)</strong> to grow high-quality multilayer graphene. Our methodology ensures electromechanical stability through precise control of growth and transfer phases.</p>
-            
-            <div class="img-box" style="margin-bottom: 20px;">
-                <div style="width: 100%; height: 350px; overflow: hidden; border-radius: 4px;">
-                    <img src="apcvd_lab.jpg" alt="CYCU APCVD Laboratory" 
-                         style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
-                </div>
-                <p class="caption">Figure 1: APCVD Setup and Laboratory Environment at CYCU</p>
-            </div>
-        
-            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                
-                <div style="flex: 1; min-width: 300px;">
-                    <div class="img-box">
-                        <div style="width: 100%; height: 250px; overflow: hidden; background: #fff; display: flex; align-items: center;">
-                            <img src="apcvd_schematic.jpg" alt="APCVD System Schematic" 
-                                 style="width: 100%; height: 100%; object-fit: contain;">
-                        </div>
-                        <p class="caption">Figure 2: Schematic Illustration of the APCVD System</p>
-                    </div>
-                </div>
-        
-                <div style="flex: 1; min-width: 300px;">
-                    <div class="img-box">
-                        <div style="width: 100%; height: 250px; overflow: hidden; background: #fff; display: flex; align-items: center;">
-                            <img src="op_flow.jpg" alt="Experimental Procedure" 
-                                 style="width: 100%; height: 100%; object-fit: contain;">
-                        </div>
-                        <p class="caption">Figure 3: Detailed Experimental Procedure</p>
-                    </div>
-                </div>
-        
-            </div>
-        
-            <div style="margin-top: 15px; background: #f8f9fa; padding: 15px; border-left: 4px solid #0366d6; font-size: 0.9em;">
-                <strong>Methodology Insights:</strong>
-                <p style="margin: 5px 0 0 0;">Focused on standardized transfer-induced processes to maintain multilayer integrity and sensor reliability.</p>
-            </div>
-        </section>
-
-        <section id="analysis-specs" style="margin-top: 40px; border-top: 1px solid #eaecef; padding-top: 20px;">
-            <h2>Material Analysis & Technical Specifications</h2>
-            <p>Instead of raw laboratory snapshots, the following key metrics define the quality and sensing potential of our synthesized multilayer graphene.</p>
-        
-            <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px;">
-                
-                <div style="flex: 1; min-width: 250px; border: 1px solid #e1e4e8; padding: 20px; border-radius: 8px; background: #fff;">
-                    <h4 style="margin-top: 0; color: #0366d6;">🔬 Optical Inspection</h4>
-                    <ul style="font-size: 0.9em; padding-left: 20px; margin-bottom: 0;">
-                        <li><strong>Coverage:</strong> Continuous film over 95% of target substrate.</li>
-                        <li><strong>Uniformity:</strong> Consistent multilayer stack confirmed via contrast analysis.</li>
-                    </ul>
-                </div>
-        
-                <div style="flex: 1; min-width: 250px; border: 1px solid #e1e4e8; padding: 20px; border-radius: 8px; background: #fff;">
-                    <h4 style="margin-top: 0; color: #0366d6;">📊 Raman Characteristics</h4>
-                    <ul style="font-size: 0.9em; padding-left: 20px; margin-bottom: 0;">
-                        <li><strong>ID/IG Ratio:</strong> Minimal D-peak indicating low defect density.</li>
-                        <li><strong>Layer Count:</strong> I2D/IG ratio consistent with stable multilayer graphene.</li>
-                    </ul>
-                </div>
-        
-            </div>
-        
-            <div style="margin-top: 25px; background: #f6f8fa; padding: 20px; border-radius: 8px; border: 1px dashed #0366d6;">
-                <p style="margin: 0; font-size: 0.95em;">
-                    <strong>Why these metrics matter:</strong> These material properties directly influence the <strong>input impedance</strong> and <strong>linearity</strong> of the analog readout circuit I am designing.
-                </p>
-            </div>
-        </section>
-
-        <section id="testing">
-            <h2>Cyclic Vibration & Reliability</h2>
-            <p>The core contribution involves testing the <strong>electromechanical stability</strong>. By applying cyclic mechanical stress, we monitor the resistance fluctuations to ensure long-term sensor reliability.</p>
-            
-            <div class="img-box">
-                <img src="cyclic_test.jpg" alt="Cyclic Testing Data">
-                <p class="caption">Figure 3: Resistance response and stability trends under thousands of vibration cycles.</p>
-            </div>
-        </section>
-    </div>
-
-    <script>
-        function updateImage(type) {
-            const img = document.getElementById('dynamic-img');
-            const caption = document.getElementById('dynamic-caption');
-            
-            if (type === 'fesem') {
-                img.src = 'fesem_view.jpg';
-                caption.innerText = 'Figure 2: FESEM image showcasing the multilayer graphene morphology.';
-            } else if (type === 'setup') {
-                img.src = 'setup_diagram.jpg';
-                caption.innerText = 'Figure 2: Detailed experimental diagram for the graphene transfer process.';
-            }
-        }
-    </script>
-
+        <div class="note"><strong>Results status:</strong> This page describes the project methods and goals. It does not report numerical performance results; those should be added after the measurements are confirmed.</div>
+    </main>
 </body>
 </html>
