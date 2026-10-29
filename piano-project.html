@@ -63,12 +63,10 @@
     <p style="text-align: center; font-size: 0.9em; color: #666;">Demonstrating real-time play and record/playback features.</p>
 
     <div class="takeaways">
-        <h3 style="margin-top:0; border:none; padding:0;">Project Reflections & Takeaways</h3>
+        <h3 style="margin-top:0; border:none; padding:0;">Debugging &amp; Design Lessons</h3>
         <ul>
-            <li><strong>Hardware Integration & Floating Pins:</strong> During the initial setup, I encountered signal instability due to "floating" digital pins. I successfully resolved this by implementing <strong>pull-down resistors</strong>, ensuring stable input signals from the push buttons.</li>
-            <li><strong>Software Logic & State Management:</strong> I discovered that conflicting background processes could interrupt the buzzer output. By optimizing the <strong>program execution priority</strong>, I ensured smooth transitions between the recording and playback modes.</li>
-            <li><strong>Practical Debugging Skills:</strong> This project significantly enhanced my debugging abilities. I learned to use a multimeter for hardware verification and the serial monitor for real-time software tracing to identify bottlenecks.</li>
-            <li><strong>System Reliability:</strong> Beyond basic circuit design, I realized that building a robust system requires considering environmental noise and software timing, which are fundamental to reliable embedded system design.</li>
+            <li><strong>Stable button inputs:</strong> Floating digital inputs caused unstable button readings. I added pull-down resistors to give each input a defined idle state.</li>
+            <li><strong>Recording and playback:</strong> Conflicting background tasks interrupted the buzzer output. I adjusted execution priority to improve transitions between recording and playback.</li>
         </ul>
     </div>
 </div>
