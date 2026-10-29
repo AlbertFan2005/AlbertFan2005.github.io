@@ -116,7 +116,7 @@
         <h3>Electromechanical Stability of Transfer-Induced Multilayer Graphene</h3>
         <p><em>Supervised by Professor Danny Wen-Yaw Chung</em></p>
         
-        <p>This interdisciplinary research investigates the reliability of graphene sensors. I focus primarily on <strong>analog circuit design</strong> and hardware implementation.</p>
+        <p>This project studies graphene sensor reliability. I participated in graphene fabrication and independently designed the complete analog readout circuit and built the vibration test platform.</p>
     
         <div style="display: flex; gap: 15px; margin-top: 20px;">
             
@@ -201,63 +201,5 @@
 </div>
 
 
-<div id="pixel-cat-companion" style="position: fixed; bottom: 20px; right: 20px; width: 150px; background: white; border: 1px solid #e1e4e8; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000; padding: 15px; text-align: center; font-family: sans-serif;">
-    
-    <p style="margin: 0 0 10px 0; font-size: 0.9em; font-weight: bold; color: #24292e;">My Lab Cat</p>
-
-    <div id="cat-image-container" style="display: flex; justify-content: center; align-items: center; height: 80px; transition: transform 0.2s ease;">
-        <img id="pixel-cat-img" src="https://newscrewdriver.files.wordpress.com/2018/10/poptartcat320240.gif" 
-             alt="Pixel Art Cat" 
-             style="width: auto; height: 100%; image-rendering: pixelated;"> </div>
-
-    <button onclick="feedPixelCatCaffeine()" style="margin-top: 10px; background: #e67e22; color: white; border: none; padding: 5px 15px; border-radius: 15px; cursor: pointer; font-size: 0.8em; font-weight: bold; transition: 0.3s;">
-        Feed ☕
-    </button>
-</div>
-
-<script>
-    const catContainer = document.getElementById('cat-image-container');
-    const catImg = document.getElementById('pixel-cat-img');
-
-
-    //  餵食咖啡因動畫
-    function feedPixelCatCaffeine() {
-        // 1. 貓咪快速震動
-        catContainer.style.animation = "shakeCat 0.5s ease-in-out infinite";
-        
-        // 2. 更改圖片效果 (例如加上咖啡橘色濾鏡)
-        catImg.style.filter = "sepia(1) saturate(10) hue-rotate(-15deg)";
-        
-        setTimeout(() => {
-            // 3. 恢復原狀
-            catContainer.style.animation = "none";
-            catImg.style.filter = "none";
-        }, 2000); // 2 秒後恢復
-    }
-</script>
-
-<style>
-    /* 貓咪震動的動畫定義 */
-    @keyframes shakeCat {
-        0% { transform: translate(1px, 1px) rotate(0deg); }
-        10% { transform: translate(-1px, -2px) rotate(-1deg); }
-        20% { transform: translate(-3px, 0px) rotate(1deg); }
-        30% { transform: translate(3px, 2px) rotate(0deg); }
-        40% { transform: translate(1px, -1px) rotate(1deg); }
-        50% { transform: translate(-1px, 2px) rotate(-1deg); }
-        60% { transform: translate(-3px, 1px) rotate(0deg); }
-        70% { transform: translate(3px, 1px) rotate(-1deg); }
-        80% { transform: translate(-1px, -1px) rotate(1deg); }
-        90% { transform: translate(1px, 2px) rotate(0deg); }
-        100% { transform: translate(1px, -2px) rotate(-1deg); }
-    }
-    
-    @media (max-width: 600px) {
-    #pixel-cat-companion {
-        display: none !important; /* 在手機螢幕下完全隱藏，不遮擋內容 */
-        }
-    }
-</style>
-    
 </body>
 </html>
