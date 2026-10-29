@@ -5,98 +5,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Graphene Sensor Circuit | Albert Fan</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.6; color: #24292e; max-width: 850px; margin: 0 auto; padding: 40px 20px; background: #fafbfc; }
-        .container { background: #fff; border: 1px solid #e1e4e8; border-radius: 8px; padding: 30px; box-shadow: 0 2px 10px rgba(0,0,0,.05); }
-        h1 { color: #0366d6; border-bottom: 1px solid #eaecef; padding-bottom: 10px; }
-        h2 { margin-top: 30px; color: #24292e; }
-        .back { color: #0366d6; text-decoration: none; }
-        .card { background: #f6f8fa; border-left: 4px solid #0366d6; padding: 16px 20px; margin: 18px 0; }
-        .path { font-family: Consolas, monospace; overflow-wrap: anywhere; }
-        li { margin: 8px 0; }
-        figure { margin: 24px auto; max-width: 580px; }
-        figure img { display: block; width: auto; max-width: 100%; max-height: 380px; margin: 0 auto; height: auto; border: 1px solid #e1e4e8; border-radius: 6px; box-sizing: border-box; }
-        figcaption { color: #586069; font-size: .9rem; margin-top: 8px; }
-        figcaption { text-align: center; }
-        .formula { overflow-wrap: anywhere; }
-        @media (max-width: 600px) { body { padding: 24px 12px; } .container { padding: 20px 16px; } }
+        * { box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.7; color: #24292e; max-width: 1020px; margin: 0 auto; padding: 32px 20px 56px; background: #fafbfc; }
+        a { color: #0366d6; text-underline-offset: 3px; }
+        .back { display: inline-block; margin-bottom: 18px; text-decoration: none; font-size: .95rem; }
+        .container { background: #fff; border: 1px solid #e1e4e8; border-radius: 12px; padding: 36px; box-shadow: 0 2px 10px rgba(0,0,0,.04); }
+        h1 { color: #0366d6; font-size: clamp(1.65rem, 3.5vw, 2.15rem); line-height: 1.3; margin: 0 0 18px; max-width: 840px; }
+        h2 { font-size: 1.35rem; line-height: 1.4; margin: 0 0 16px; }
+        h3 { font-size: 1.08rem; line-height: 1.45; margin: 0 0 12px; }
+        p { margin: 0 0 14px; }
+        .intro { max-width: 780px; color: #586069; }
+        .supervisor { font-size: .9rem; color: #586069; }
+        .page-nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 0; }
+        .page-nav a { padding: 6px 12px; border: 1px solid #d8e7f8; border-radius: 6px; text-decoration: none; font-size: .88rem; background: #f7fbff; }
+        .chapter { border-top: 1px solid #eaecef; padding-top: 28px; margin-top: 28px; scroll-margin-top: 20px; }
+        .row { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.25fr); gap: 24px; align-items: center; }
+        .row > *, .media-grid > * { min-width: 0; }
+        .stage { padding: 24px 0; border-top: 1px solid #eef0f2; }
+        .stage:first-of-type { border-top: 0; padding-top: 4px; }
+        .stage p { font-size: .95rem; }
+        figure { margin: 0; min-width: 0; }
+        figure img { display: block; width: auto; max-width: 100%; height: auto; max-height: 350px; margin: 0 auto; }
+        .image-panel { border: 1px solid #e1e4e8; border-radius: 8px; padding: 14px; background: white; }
+        figcaption { color: #6a737d; font-size: .82rem; line-height: 1.5; margin-top: 10px; text-align: center; }
+        .path { padding: 14px 18px; background: #f6f8fa; border-left: 3px solid #0366d6; border-radius: 0 6px 6px 0; margin: 0 0 24px; font-size: .92rem; overflow-wrap: anywhere; }
+        .formula { padding: 10px 12px; background: #f6f8fa; border-radius: 6px; overflow-wrap: anywhere; }
+        .wide-figure { max-width: 560px; margin: 20px auto 0; }
+        .wide-figure img { max-height: 500px; }
+        .pcb-figure { max-width: 520px; }
+        .media-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; margin-top: 20px; align-items: start; }
+        .photo-crop { position: relative; overflow: hidden; width: 100%; background: #f6f8fa; border-radius: 4px; }
+        .photo-crop img { position: absolute; max-width: none; max-height: none; margin: 0; height: auto; }
+        .cvd-crop { aspect-ratio: 590 / 350; }
+        .cvd-crop img { width: 120.1695%; left: -13.5593%; top: -44.2857%; }
+        .raman-crop { aspect-ratio: 1230 / 860; }
+        .raman-crop img { width: 166.5041%; left: -56.0976%; top: -23.2558%; }
+        .hall-crop { aspect-ratio: 1820 / 1030; }
+        .hall-crop img { width: 112.5275%; left: -10.9890%; top: -4.8544%; }
+        .related { display: flex; flex-wrap: wrap; gap: 12px; }
+        .related a { display: block; padding: 12px 16px; border: 1px solid #d8e7f8; border-radius: 8px; text-decoration: none; background: #f7fbff; }
+        @media (max-width: 720px) { body { padding: 22px 12px 36px; } .container { padding: 24px 18px; } .row, .media-grid { grid-template-columns: minmax(0,1fr); gap: 16px; } .stage { padding: 22px 0; } figure img { max-height: 320px; } .wide-figure img { max-height: 460px; } }
     </style>
 </head>
 <body>
     <a class="back" href="index.html">← Back to Home</a>
     <main class="container">
-        <h1>Analog Readout Circuit for a Graphene Sensor</h1>
-        <p>This circuit is being developed to read resistance changes from a graphene piezoresistive sensor during vibration testing. The design connects the sensor measurement to an analog signal that can be observed and analyzed.</p>
 
-        <h2>Signal Path</h2>
-        <div class="card path"><strong>Graphene sensor → Wheatstone bridge → RC stage → AD8221 instrumentation amplifier → 1–15 Hz band-pass filter</strong></div>
-        <ul>
-            <li><strong>Wheatstone bridge:</strong> Converts a small sensor resistance change into a differential voltage.</li>
-            <li><strong>RC stage:</strong> Conditions the bridge signal before amplification.</li>
-            <li><strong>AD8221:</strong> Amplifies the differential signal for measurement.</li>
-            <li><strong>Band-pass filter:</strong> Keeps the frequency range of interest for the vibration measurements.</li>
-        </ul>
-
-        <h2>Circuit Schematics</h2>
-        <section aria-labelledby="schematic-0">
-            <h3 id="schematic-0">1. System Overview</h3>
-            <p>The diagram shows the four signal-processing stages and their power modules. The bridge output passes through the RC filter and AD8221 before reaching the band-pass stage.</p>
-            <figure>
+        <header>
+            <h1>Analog Readout Circuit for a Graphene Sensor</h1>
+            <p class="intro">This circuit is being developed to read resistance changes from a graphene piezoresistive sensor during vibration testing. The design connects the sensor measurement to an analog signal that can be observed and analyzed.</p>
+            <nav class="page-nav" aria-label="On this page"><a href="#overview">Signal Path</a><a href="#stages">Circuit Stages</a><a href="#complete">Complete Schematic</a><a href="#pcb">PCB Design</a></nav>
+        </header>
+        <section class="chapter" id="overview">
+            <h2>Signal Path &amp; System Overview</h2>
+            <p class="path"><strong>Graphene sensor → Wheatstone bridge → RC stage → AD8221 instrumentation amplifier → 1–15 Hz band-pass filter</strong></p>
+            <div class="row">
+                <p>The diagram shows the four signal-processing stages and their power modules. The bridge output passes through the RC filter and AD8221 before reaching the band-pass stage.</p>
+                <figure class="image-panel">
                 <img src="circuit-overview.jpg" alt="Block diagram of the Wheatstone bridge, RC filter, AD8221 amplifier, band-pass filter and power modules" width="1043" height="588" loading="lazy" decoding="async">
                 <figcaption>System Overview.</figcaption>
             </figure>
+            </div>
         </section>
-
-        <section aria-labelledby="schematic-1">
-            <h3 id="schematic-1">2. Wheatstone Bridge</h3>
-            <p>Three fixed 2 kΩ resistors form a bridge with the sensor resistance Rx. In the shown simulation setup, Rx = 2000 + 100 sin(2π × 5t) Ω. This represents a 5 Hz resistance variation with a 100 Ω amplitude around 2 kΩ; it is a simulation input, not a measured sensor response.</p>
-            <figure>
+        <section class="chapter" id="stages">
+            <h2>Circuit Stages</h2>
+            <section class="stage row" aria-labelledby="stage-1">
+                <div><h3 id="stage-1">1. Wheatstone Bridge</h3><p>Three fixed 2 kΩ resistors form a bridge with the sensor resistance Rx. In the shown simulation setup, Rx = 2000 + 100 sin(2π × 5t) Ω. This represents a 5 Hz resistance variation with a 100 Ω amplitude around 2 kΩ; it is a simulation input, not a measured sensor response.</p></div>
+                <figure class="image-panel">
                 <img src="circuit-bridge.jpg" alt="Wheatstone bridge with three 2 kiloohm resistors and a simulated variable sensor resistance" width="1325" height="507" loading="lazy" decoding="async">
                 <figcaption>Wheatstone Bridge.</figcaption>
             </figure>
-        </section>
-
-        <section aria-labelledby="schematic-2">
-            <h3 id="schematic-2">3. Input RC Filter</h3>
-            <p>The passive input network uses two 10 kΩ series resistors, a 470 nF capacitor between the signal lines, and a 47 nF capacitor from each line to ground. It filters the bridge signal before amplification.</p>
-            <figure>
+            </section>
+<section class="stage row" aria-labelledby="stage-2">
+                <div><h3 id="stage-2">2. Input RC Filter</h3><p>The passive input network uses two 10 kΩ series resistors, a 470 nF capacitor between the signal lines, and a 47 nF capacitor from each line to ground. It filters the bridge signal before amplification.</p></div>
+                <figure class="image-panel">
                 <img src="circuit-rc-filter.jpg" alt="Differential RC filter with two 10 kiloohm resistors, a 470 nanofarad differential capacitor and two 47 nanofarad capacitors to ground" width="1042" height="612" loading="lazy" decoding="async">
                 <figcaption>Input RC Filter.</figcaption>
             </figure>
-        </section>
-
-        <section aria-labelledby="schematic-3">
-            <h3 id="schematic-3">4. AD8221 Instrumentation Amplifier</h3>
-            <p>The AD8221 amplifies the differential signal. The gain resistor is <strong>499 Ω</strong>. Using the <a href="https://www.analog.com/media/en/technical-documentation/data-sheets/AD8221.pdf" target="_blank" rel="noopener noreferrer">AD8221 datasheet</a> equation, the nominal amplifier gain is approximately <strong>100 V/V</strong>.</p><p class="formula"><strong>G = 1 + 49,400 / 499 ≈ 100</strong></p><p>This is the calculated gain of the AD8221 stage, not the measured gain of the complete signal chain. The schematic also includes 1 kΩ input resistors, 100 nF input capacitors, and 0.1 μF / 1 μF supply decoupling capacitors.</p>
-            <figure>
+            </section>
+<section class="stage row" aria-labelledby="stage-3">
+                <div><h3 id="stage-3">3. AD8221 Instrumentation Amplifier</h3><p>The AD8221 amplifies the differential signal. The gain resistor is <strong>499 Ω</strong>. Using the <a href="https://www.analog.com/media/en/technical-documentation/data-sheets/AD8221.pdf" target="_blank" rel="noopener noreferrer">AD8221 datasheet</a> equation, the nominal amplifier gain is approximately <strong>100 V/V</strong>.</p><p class="formula"><strong>G = 1 + 49,400 / 499 ≈ 100</strong></p><p>This is the calculated gain of the AD8221 stage, not the measured gain of the complete signal chain. The schematic also includes 1 kΩ input resistors, 100 nF input capacitors, and 0.1 μF / 1 μF supply decoupling capacitors.</p></div>
+                <figure class="image-panel">
                 <img src="circuit-ad8221.jpg" alt="AD8221 instrumentation amplifier with a 499 ohm gain resistor, input RC networks and supply decoupling" width="731" height="603" loading="lazy" decoding="async">
                 <figcaption>AD8221 Instrumentation Amplifier.</figcaption>
             </figure>
-        </section>
-
-        <section aria-labelledby="schematic-4">
-            <h3 id="schematic-4">5. Active Band-Pass Filter</h3>
-            <p>The circuit combines active high-pass and low-pass sections, followed by a 22 μF output coupling capacitor and a 10 kΩ resistor. The schematic shows 1 μF filter capacitors, 150 kΩ / 100 kΩ resistors in the first section, and 5.3 kΩ resistors in the second. The 1–15 Hz range is the design target; the complete response remains to be verified.</p>
-            <figure>
+            </section>
+<section class="stage row" aria-labelledby="stage-4">
+                <div><h3 id="stage-4">4. Active Band-Pass Filter</h3><p>The circuit combines active high-pass and low-pass sections, followed by a 22 μF output coupling capacitor and a 10 kΩ resistor. The schematic shows 1 μF filter capacitors, 150 kΩ / 100 kΩ resistors in the first section, and 5.3 kΩ resistors in the second. The 1–15 Hz range is the design target; the complete response remains to be verified.</p></div>
+                <figure class="image-panel">
                 <img src="circuit-bandpass.jpg" alt="Two op amp active band-pass filter with high-pass and low-pass sections and AC-coupled output" width="1406" height="600" loading="lazy" decoding="async">
                 <figcaption>Active Band-Pass Filter.</figcaption>
             </figure>
+            </section>
         </section>
-
-        <h2>Sensor and Measurement</h2>
-        <p>The graphene film is transferred onto a PET substrate with interdigitated electrodes. Raman spectroscopy and Hall measurements are used to characterize the graphene. The readout circuit is intended to measure resistance changes while the sensor is exposed to cyclic vibration.</p>
-
-        <h2>Design Work</h2>
-        <p>The circuit and PCB are designed in EasyEDA. LTspice is used to study circuit behavior before hardware implementation. The current page describes the design approach; measured performance results will be added after they are confirmed.</p>
-
-
-        <figure>
-            <img src="circuit-pcb-3d.jpg" alt="PCB 3D design preview showing AD8221 and TL082 component placement" width="2048" height="1536" loading="lazy" decoding="async">
-            <figcaption>PCB 3D preview.</figcaption>
-        </figure>
-        <figure>
-            <img style="max-height: 520px;" src="circuit-full-schematic.jpg" alt="Complete circuit schematic including power supplies, bridge, input filters, AD8221 and active filter" width="888" height="805" loading="lazy" decoding="async">
-            <figcaption>Complete circuit schematic.</figcaption>
-        </figure>
+        <section class="chapter" id="complete">
+            <h2>Complete Circuit Schematic</h2>
+            <p>The circuit and PCB are designed in EasyEDA. LTspice is used to study circuit behavior before hardware implementation.</p>
+            <figure class="image-panel wide-figure">
+                <img src="circuit-full-schematic.jpg" alt="Complete circuit schematic including power supplies, bridge, input filters, AD8221 and active filter" width="888" height="805" loading="lazy" decoding="async">
+                <figcaption>Complete circuit schematic.</figcaption>
+            </figure>
+        </section>
+        <section class="chapter" id="pcb">
+            <h2>PCB Design</h2>
+            <figure class="image-panel wide-figure pcb-figure">
+                <img src="circuit-pcb-3d.jpg" alt="PCB 3D design preview showing AD8221 and TL082 component placement" width="2048" height="1536" loading="lazy" decoding="async">
+                <figcaption>PCB 3D preview.</figcaption>
+            </figure>
+        </section>
     </main>
 </body>
 </html>

@@ -5,71 +5,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Graphene Research Details | Albert Fan</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.6; color: #24292e; max-width: 850px; margin: 0 auto; padding: 40px 20px; background: #fafbfc; }
-        .container { background: #fff; border: 1px solid #e1e4e8; border-radius: 8px; padding: 30px; box-shadow: 0 2px 10px rgba(0,0,0,.05); }
-        h1 { color: #0366d6; border-bottom: 1px solid #eaecef; padding-bottom: 10px; }
-        h2 { margin-top: 32px; color: #24292e; }
-        .back { color: #0366d6; text-decoration: none; }
-        .figure { margin: 20px 0; padding: 12px; text-align: center; border: 1px solid #e1e4e8; border-radius: 6px; background: #fff; }
-        .figure img { display: block; max-width: 100%; max-height: 420px; margin: 0 auto; object-fit: contain; }
-        .caption { color: #586069; font-size: .9em; margin: 10px 0 0; }
-        .note { background: #f6f8fa; border-left: 4px solid #0366d6; padding: 14px 18px; margin: 20px 0; }
-        li { margin: 8px 0; }
-        .photo { max-width: 580px; margin: 20px auto; }
-        .photo-crop { position: relative; overflow: hidden; width: 100%; background: #f6f8fa; }
-        .photo-crop img { position: absolute; max-width: none; max-height: none; margin: 0; height: auto; object-fit: initial; }
+        * { box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.7; color: #24292e; max-width: 1020px; margin: 0 auto; padding: 32px 20px 56px; background: #fafbfc; }
+        a { color: #0366d6; text-underline-offset: 3px; }
+        .back { display: inline-block; margin-bottom: 18px; text-decoration: none; font-size: .95rem; }
+        .container { background: #fff; border: 1px solid #e1e4e8; border-radius: 12px; padding: 36px; box-shadow: 0 2px 10px rgba(0,0,0,.04); }
+        h1 { color: #0366d6; font-size: clamp(1.65rem, 3.5vw, 2.15rem); line-height: 1.3; margin: 0 0 18px; max-width: 840px; }
+        h2 { font-size: 1.35rem; line-height: 1.4; margin: 0 0 16px; }
+        h3 { font-size: 1.08rem; line-height: 1.45; margin: 0 0 12px; }
+        p { margin: 0 0 14px; }
+        .intro { max-width: 780px; color: #586069; }
+        .supervisor { font-size: .9rem; color: #586069; }
+        .page-nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 0; }
+        .page-nav a { padding: 6px 12px; border: 1px solid #d8e7f8; border-radius: 6px; text-decoration: none; font-size: .88rem; background: #f7fbff; }
+        .chapter { border-top: 1px solid #eaecef; padding-top: 28px; margin-top: 28px; scroll-margin-top: 20px; }
+        .row { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.25fr); gap: 24px; align-items: center; }
+        .row > *, .media-grid > * { min-width: 0; }
+        .stage { padding: 24px 0; border-top: 1px solid #eef0f2; }
+        .stage:first-of-type { border-top: 0; padding-top: 4px; }
+        .stage p { font-size: .95rem; }
+        figure { margin: 0; min-width: 0; }
+        figure img { display: block; width: auto; max-width: 100%; height: auto; max-height: 350px; margin: 0 auto; }
+        .image-panel { border: 1px solid #e1e4e8; border-radius: 8px; padding: 14px; background: white; }
+        figcaption { color: #6a737d; font-size: .82rem; line-height: 1.5; margin-top: 10px; text-align: center; }
+        .path { padding: 14px 18px; background: #f6f8fa; border-left: 3px solid #0366d6; border-radius: 0 6px 6px 0; margin: 0 0 24px; font-size: .92rem; overflow-wrap: anywhere; }
+        .formula { padding: 10px 12px; background: #f6f8fa; border-radius: 6px; overflow-wrap: anywhere; }
+        .wide-figure { max-width: 560px; margin: 20px auto 0; }
+        .wide-figure img { max-height: 500px; }
+        .pcb-figure { max-width: 520px; }
+        .media-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; margin-top: 20px; align-items: start; }
+        .photo-crop { position: relative; overflow: hidden; width: 100%; background: #f6f8fa; border-radius: 4px; }
+        .photo-crop img { position: absolute; max-width: none; max-height: none; margin: 0; height: auto; }
         .cvd-crop { aspect-ratio: 590 / 350; }
         .cvd-crop img { width: 120.1695%; left: -13.5593%; top: -44.2857%; }
         .raman-crop { aspect-ratio: 1230 / 860; }
         .raman-crop img { width: 166.5041%; left: -56.0976%; top: -23.2558%; }
         .hall-crop { aspect-ratio: 1820 / 1030; }
         .hall-crop img { width: 112.5275%; left: -10.9890%; top: -4.8544%; }
-        @media (max-width: 600px) { body { padding: 24px 12px; } .container { padding: 20px 16px; } }
+        .related { display: flex; flex-wrap: wrap; gap: 12px; }
+        .related a { display: block; padding: 12px 16px; border: 1px solid #d8e7f8; border-radius: 8px; text-decoration: none; background: #f7fbff; }
+        @media (max-width: 720px) { body { padding: 22px 12px 36px; } .container { padding: 24px 18px; } .row, .media-grid { grid-template-columns: minmax(0,1fr); gap: 16px; } .stage { padding: 22px 0; } figure img { max-height: 320px; } .wide-figure img { max-height: 460px; } }
     </style>
 </head>
 <body>
     <a class="back" href="index.html">← Back to Home</a>
     <main class="container">
-        <h1>Electromechanical Stability of Transfer-Induced Multilayer Graphene</h1>
-        <p>This project studies the fabrication and testing of multilayer graphene for a flexible piezoresistive sensor. The work combines graphene growth and transfer, material characterization, analog readout, and cyclic vibration testing.</p>
-        <p><em>Supervised by Professor Danny Wen-Yaw Chung</em></p>
 
-        <h2>Graphene Growth</h2>
-        <p>Graphene is grown on copper foil by atmospheric-pressure chemical vapor deposition (APCVD), using camphor as the carbon source.</p>
-        <div class="figure photo">
-            <div class="photo-crop cvd-crop"><img src="apcvd_lab.jpg" alt="APCVD furnace and gas connections" width="709" height="532" loading="lazy" decoding="async"></div>
-            <p class="caption">APCVD laboratory setup.</p>
-        </div>
-        <div class="figure">
-            <img src="apcvd_schematic.jpg" alt="APCVD system schematic">
-            <p class="caption">Schematic of the APCVD system.</p>
-        </div>
-
-        <h2>Transfer and Sensor Structure</h2>
-        <p>A PMMA support layer is used during transfer. After the copper is etched, the graphene is transferred onto a PET substrate with interdigitated electrodes. The flexible sensor is designed to convert mechanical strain into a resistance change.</p>
-        <div class="figure">
-            <img src="op_flow.jpg" alt="Graphene experimental process flow">
-            <p class="caption">Experimental process flow.</p>
-        </div>
-
-        <h2>Characterization and Testing Plan</h2>
-        <ul>
-            <li><strong>Raman spectroscopy:</strong> Used to examine the graphene structure and defect-related features.</li>
-            <li><strong>Hall measurement:</strong> Used to characterize electrical properties.</li>
-            <li><strong>Cyclic vibration testing:</strong> Used to study resistance response and stability during repeated mechanical motion.</li>
-        </ul>
-
-        <div class="figure photo">
-            <div class="photo-crop raman-crop"><img src="raman-instrument.jpg" alt="Raman spectroscopy instrument in the laboratory" width="2048" height="1536" loading="lazy" decoding="async"></div>
-            <p class="caption">Raman spectroscopy instrument for graphene characterization.</p>
-        </div>
-        <div class="figure photo">
-            <div class="photo-crop hall-crop"><img src="hall-measurement-system.jpg" alt="Hall effect measurement system with magnet and sample probe" width="2048" height="1536" loading="lazy" decoding="async"></div>
-            <p class="caption">Hall effect measurement system for electrical characterization.</p>
-        </div>
-
-        <p>The analog readout circuit is described on the <a href="circuit-details.html">circuit design page</a>. The vibration platform and its control interface are described on the <a href="esp32-vibration-platform.html">ESP32 project page</a>.</p>
-
+        <header>
+            <h1>Electromechanical Stability of Transfer-Induced Multilayer Graphene</h1>
+            <p class="intro">This project studies the fabrication and testing of multilayer graphene for a flexible piezoresistive sensor. The work combines graphene growth and transfer, material characterization, analog readout, and cyclic vibration testing.</p>
+            <p class="supervisor"><em>Supervised by Professor Danny Wen-Yaw Chung</em></p>
+            <nav class="page-nav" aria-label="On this page"><a href="#growth">Graphene Growth</a><a href="#transfer">Transfer &amp; Structure</a><a href="#characterization">Characterization</a><a href="#related">Related Work</a></nav>
+        </header>
+        <section class="chapter" id="growth">
+            <h2>Graphene Growth</h2>
+            <p>Graphene is grown on copper foil by atmospheric-pressure chemical vapor deposition (APCVD), using camphor as the carbon source.</p>
+            <div class="media-grid">
+                <figure class="image-panel">
+                    <div class="photo-crop cvd-crop"><img src="apcvd_lab.jpg" alt="APCVD furnace and gas connections" width="709" height="532" loading="lazy" decoding="async"></div>
+                    <figcaption>APCVD laboratory setup.</figcaption>
+                </figure>
+                <figure class="image-panel">
+                    <img src="apcvd_schematic.jpg" alt="APCVD system schematic" loading="lazy" decoding="async">
+                    <figcaption>Schematic of the APCVD system.</figcaption>
+                </figure>
+            </div>
+        </section>
+        <section class="chapter" id="transfer">
+            <h2>Transfer and Sensor Structure</h2>
+            <div class="row">
+                <p>A PMMA support layer is used during transfer. After the copper is etched, the graphene is transferred onto a PET substrate with interdigitated electrodes. The flexible sensor is designed to convert mechanical strain into a resistance change.</p>
+                <figure class="image-panel">
+                    <img src="op_flow.jpg" alt="Graphene experimental process flow" loading="lazy" decoding="async">
+                    <figcaption>Experimental process flow.</figcaption>
+                </figure>
+            </div>
+        </section>
+        <section class="chapter" id="characterization">
+            <h2>Material Characterization</h2>
+            <section class="stage row" aria-labelledby="raman">
+                <div><h3 id="raman">Raman Spectroscopy</h3><p>Raman spectroscopy is used to examine the graphene structure and defect-related features.</p></div>
+                <figure class="image-panel">
+                    <div class="photo-crop raman-crop"><img src="raman-instrument.jpg" alt="Raman spectroscopy instrument in the laboratory" width="2048" height="1536" loading="lazy" decoding="async"></div>
+                    <figcaption>Raman spectroscopy instrument.</figcaption>
+                </figure>
+            </section>
+            <section class="stage row" aria-labelledby="hall">
+                <div><h3 id="hall">Hall Measurement</h3><p>Hall measurements are used to characterize the electrical properties of the graphene film.</p></div>
+                <figure class="image-panel">
+                    <div class="photo-crop hall-crop"><img src="hall-measurement-system.jpg" alt="Hall effect measurement system with magnet and sample probe" width="2048" height="1536" loading="lazy" decoding="async"></div>
+                    <figcaption>Hall effect measurement system.</figcaption>
+                </figure>
+            </section>
+        </section>
+        <section class="chapter" id="related">
+            <h2>Cyclic Vibration Testing &amp; Related Work</h2>
+            <p>Cyclic vibration testing is used to study resistance response and stability during repeated mechanical motion. The readout circuit and vibration platform are described on the following pages.</p>
+            <div class="related"><a href="circuit-details.html">Analog Readout Circuit →</a><a href="esp32-vibration-platform.html">ESP32 Vibration Platform →</a></div>
+        </section>
     </main>
 </body>
 </html>
