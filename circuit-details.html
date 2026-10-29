@@ -54,6 +54,7 @@
         <header>
             <h1>Analog Readout Circuit for a Graphene Sensor</h1>
             <p class="intro">This circuit is being developed to read resistance changes from a graphene piezoresistive sensor during vibration testing. The design connects the sensor measurement to an analog signal that can be observed and analyzed.</p>
+            <p class="intro"><strong>My contribution:</strong> I independently designed the complete readout circuit, from the circuit architecture to the schematic drawings.</p>
             <nav class="page-nav" aria-label="On this page"><a href="#overview">Signal Path</a><a href="#stages">Circuit Stages</a><a href="#complete">Complete Schematic</a><a href="#pcb">PCB Design</a></nav>
         </header>
         <section class="chapter" id="overview">
@@ -70,28 +71,28 @@
         <section class="chapter" id="stages">
             <h2>Circuit Stages</h2>
             <section class="stage row" aria-labelledby="stage-1">
-                <div><h3 id="stage-1">1. Wheatstone Bridge</h3><p>Three fixed 2 kΩ resistors form a bridge with the sensor resistance Rx. It is a simulation input, not a measured sensor response.</p></div>
+                <div><h3 id="stage-1">1. Wheatstone Bridge</h3><p>The bridge converts changes in sensor resistance into a differential voltage for amplification. Three fixed 2 kΩ resistors are paired with Rx. Rx is a simulation input, not a measured sensor response.</p></div>
                 <figure class="image-panel">
                 <img src="circuit-bridge.jpg" alt="Wheatstone bridge with three 2 kiloohm resistors and a simulated variable sensor resistance" width="1325" height="507" loading="lazy" decoding="async">
                 <figcaption>Wheatstone Bridge.</figcaption>
             </figure>
             </section>
 <section class="stage row" aria-labelledby="stage-2">
-                <div><h3 id="stage-2">2. Input RC Filter</h3><p>The passive input network uses two 10 kΩ series resistors, a 470 nF capacitor between the signal lines, and a 47 nF capacitor from each line to ground. It filters the bridge signal before amplification.</p></div>
+                <div><h3 id="stage-2">2. Input RC Filter</h3><p>The input RC network filters the bridge signal before amplification. It includes a capacitor between the signal lines and a capacitor from each line to ground.</p></div>
                 <figure class="image-panel">
                 <img src="circuit-rc-filter.jpg" alt="Differential RC filter with two 10 kiloohm resistors, a 470 nanofarad differential capacitor and two 47 nanofarad capacitors to ground" width="1042" height="612" loading="lazy" decoding="async">
                 <figcaption>Input RC Filter.</figcaption>
             </figure>
             </section>
 <section class="stage row" aria-labelledby="stage-3">
-                <div><h3 id="stage-3">3. AD8221 Instrumentation Amplifier</h3><p>The AD8221 amplifies the differential signal. The gain resistor is <strong>499 Ω</strong>. Using the <a href="https://www.analog.com/media/en/technical-documentation/data-sheets/AD8221.pdf" target="_blank" rel="noopener noreferrer">AD8221 datasheet</a> equation, the nominal amplifier gain is approximately <strong>100 V/V</strong>.</p><p class="formula"><strong>G = 1 + 49,400 / 499 ≈ 100</strong></p><p>This is the calculated gain of the AD8221 stage, not the measured gain of the complete signal chain. The schematic also includes 1 kΩ input resistors, 100 nF input capacitors, and 0.1 μF / 1 μF supply decoupling capacitors.</p></div>
+                <div><h3 id="stage-3">3. AD8221 Instrumentation Amplifier</h3><p>The AD8221 amplifies the small differential voltage from the bridge. The gain resistor is <strong>499 Ω</strong>. Using the <a href="https://www.analog.com/media/en/technical-documentation/data-sheets/AD8221.pdf" target="_blank" rel="noopener noreferrer">AD8221 datasheet</a> equation, the nominal amplifier gain is approximately <strong>100 V/V</strong>.</p><p class="formula"><strong>G = 1 + 49,400 / 499 ≈ 100</strong></p><p>The nominal gain applies to this amplifier stage; the overall response also depends on the bridge and filter stages.</p></div>
                 <figure class="image-panel">
                 <img src="circuit-ad8221.jpg" alt="AD8221 instrumentation amplifier with a 499 ohm gain resistor, input RC networks and supply decoupling" width="731" height="603" loading="lazy" decoding="async">
                 <figcaption>AD8221 Instrumentation Amplifier.</figcaption>
             </figure>
             </section>
 <section class="stage row" aria-labelledby="stage-4">
-                <div><h3 id="stage-4">4. Active Band-Pass Filter</h3><p>The circuit combines active high-pass and low-pass sections, followed by a 22 μF output coupling capacitor and a 10 kΩ resistor. The schematic shows 1 μF filter capacitors, 150 kΩ / 100 kΩ resistors in the first section, and 5.3 kΩ resistors in the second. The 1–15 Hz range is the design target; the complete response remains to be verified.</p></div>
+                <div><h3 id="stage-4">4. Active Band-Pass Filter</h3><p>The high-pass and low-pass sections target a 1–15 Hz band for low-frequency vibration sensing, attenuating signals below and above the intended band. This range is a design target.</p></div>
                 <figure class="image-panel">
                 <img src="circuit-bandpass.jpg" alt="Two op amp active band-pass filter with high-pass and low-pass sections and AC-coupled output" width="1406" height="600" loading="lazy" decoding="async">
                 <figcaption>Active Band-Pass Filter.</figcaption>
