@@ -13,9 +13,10 @@
         .card { background: #f6f8fa; border-left: 4px solid #0366d6; padding: 16px 20px; margin: 18px 0; }
         .path { font-family: Consolas, monospace; overflow-wrap: anywhere; }
         li { margin: 8px 0; }
-        figure { margin: 24px 0; }
-        figure img { display: block; width: 100%; height: auto; border: 1px solid #e1e4e8; border-radius: 6px; box-sizing: border-box; }
+        figure { margin: 24px auto; max-width: 580px; }
+        figure img { display: block; width: auto; max-width: 100%; max-height: 380px; margin: 0 auto; height: auto; border: 1px solid #e1e4e8; border-radius: 6px; box-sizing: border-box; }
         figcaption { color: #586069; font-size: .9rem; margin-top: 8px; }
+        figcaption { text-align: center; }
         .formula { overflow-wrap: anywhere; }
         @media (max-width: 600px) { body { padding: 24px 12px; } .container { padding: 20px 16px; } }
     </style>
@@ -93,7 +94,7 @@
             <figcaption>PCB 3D preview.</figcaption>
         </figure>
         <figure>
-            <img src="circuit-full-schematic.jpg" alt="Complete circuit schematic including power supplies, bridge, input filters, AD8221 and active filter" width="888" height="805" loading="lazy" decoding="async">
+            <img style="max-height: 520px;" src="circuit-full-schematic.jpg" alt="Complete circuit schematic including power supplies, bridge, input filters, AD8221 and active filter" width="888" height="805" loading="lazy" decoding="async">
             <figcaption>Complete circuit schematic.</figcaption>
         </figure>
     </main>

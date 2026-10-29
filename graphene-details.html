@@ -15,6 +15,16 @@
         .caption { color: #586069; font-size: .9em; margin: 10px 0 0; }
         .note { background: #f6f8fa; border-left: 4px solid #0366d6; padding: 14px 18px; margin: 20px 0; }
         li { margin: 8px 0; }
+        .photo { max-width: 580px; margin: 20px auto; }
+        .photo-crop { position: relative; overflow: hidden; width: 100%; background: #f6f8fa; }
+        .photo-crop img { position: absolute; max-width: none; max-height: none; margin: 0; height: auto; object-fit: initial; }
+        .cvd-crop { aspect-ratio: 590 / 350; }
+        .cvd-crop img { width: 120.1695%; left: -13.5593%; top: -44.2857%; }
+        .raman-crop { aspect-ratio: 1230 / 860; }
+        .raman-crop img { width: 166.5041%; left: -56.0976%; top: -23.2558%; }
+        .hall-crop { aspect-ratio: 1820 / 1030; }
+        .hall-crop img { width: 112.5275%; left: -10.9890%; top: -4.8544%; }
+        @media (max-width: 600px) { body { padding: 24px 12px; } .container { padding: 20px 16px; } }
     </style>
 </head>
 <body>
@@ -26,8 +36,8 @@
 
         <h2>Graphene Growth</h2>
         <p>Graphene is grown on copper foil by atmospheric-pressure chemical vapor deposition (APCVD), using camphor as the carbon source.</p>
-        <div class="figure">
-            <img src="apcvd_lab.jpg" alt="APCVD laboratory setup">
+        <div class="figure photo">
+            <div class="photo-crop cvd-crop"><img src="apcvd_lab.jpg" alt="APCVD furnace and gas connections" width="709" height="532" loading="lazy" decoding="async"></div>
             <p class="caption">APCVD laboratory setup.</p>
         </div>
         <div class="figure">
@@ -48,6 +58,16 @@
             <li><strong>Hall measurement:</strong> Used to characterize electrical properties.</li>
             <li><strong>Cyclic vibration testing:</strong> Used to study resistance response and stability during repeated mechanical motion.</li>
         </ul>
+
+        <div class="figure photo">
+            <div class="photo-crop raman-crop"><img src="raman-instrument.jpg" alt="Raman spectroscopy instrument in the laboratory" width="2048" height="1536" loading="lazy" decoding="async"></div>
+            <p class="caption">Raman spectroscopy instrument for graphene characterization.</p>
+        </div>
+        <div class="figure photo">
+            <div class="photo-crop hall-crop"><img src="hall-measurement-system.jpg" alt="Hall effect measurement system with magnet and sample probe" width="2048" height="1536" loading="lazy" decoding="async"></div>
+            <p class="caption">Hall effect measurement system for electrical characterization.</p>
+        </div>
+
         <p>The analog readout circuit is described on the <a href="circuit-details.html">circuit design page</a>. The vibration platform and its control interface are described on the <a href="esp32-vibration-platform.html">ESP32 project page</a>.</p>
 
     </main>
