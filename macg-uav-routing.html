@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Albert Fan's contribution to a team study of mobility-aware clustered UAV routing: concept development, simulation design, and comparative evaluation using UavNetSim.">
+    <title>MACG UAV Routing Research | Albert Fan</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.7; color: #24292e; max-width: 1020px; margin: 0 auto; padding: 32px 20px 56px; background: #fafbfc; }
+        a { color: #0366d6; text-underline-offset: 3px; }
+        .back { display: inline-block; margin-bottom: 18px; text-decoration: none; font-size: .95rem; }
+        .container { background: #fff; border: 1px solid #e1e4e8; border-radius: 12px; padding: 36px; box-shadow: 0 2px 10px rgba(0,0,0,.04); }
+        h1 { color: #0366d6; font-size: clamp(1.65rem, 3.5vw, 2.15rem); line-height: 1.3; margin: 0 0 18px; max-width: 840px; }
+        h2 { font-size: 1.35rem; line-height: 1.4; margin: 0 0 16px; }
+        h3 { font-size: 1.08rem; line-height: 1.45; margin: 0 0 12px; }
+        p { margin: 0 0 14px; }
+        .intro { max-width: 780px; color: #586069; }
+        .supervisor { font-size: .9rem; color: #586069; }
+        .page-nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 0; }
+        .page-nav a { padding: 6px 12px; border: 1px solid #d8e7f8; border-radius: 6px; text-decoration: none; font-size: .88rem; background: #f7fbff; }
+        .chapter { border-top: 1px solid #eaecef; padding-top: 28px; margin-top: 28px; scroll-margin-top: 20px; }
+        .row { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.25fr); gap: 24px; align-items: center; }
+        .row > *, .media-grid > * { min-width: 0; }
+        .stage { padding: 24px 0; border-top: 1px solid #eef0f2; }
+        .stage:first-of-type { border-top: 0; padding-top: 4px; }
+        .stage p { font-size: .95rem; }
+        figure { margin: 0; min-width: 0; }
+        figure img { display: block; width: auto; max-width: 100%; height: auto; max-height: 350px; margin: 0 auto; }
+        .image-panel { border: 1px solid #e1e4e8; border-radius: 8px; padding: 14px; background: white; }
+        figcaption { color: #6a737d; font-size: .82rem; line-height: 1.5; margin-top: 10px; text-align: center; }
+        .path { padding: 14px 18px; background: #f6f8fa; border-left: 3px solid #0366d6; border-radius: 0 6px 6px 0; margin: 0 0 24px; font-size: .92rem; overflow-wrap: anywhere; }
+        .formula { padding: 10px 12px; background: #f6f8fa; border-radius: 6px; overflow-wrap: anywhere; }
+        .wide-figure { max-width: 560px; margin: 20px auto 0; }
+        .wide-figure img { max-height: 500px; }
+        .pcb-figure { max-width: 520px; }
+        .media-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; margin-top: 20px; align-items: stretch; }
+        .media-grid .image-panel { display: flex; flex-direction: column; }
+        .media-grid figcaption { margin-top: auto; padding-top: 10px; }
+        .diagram-frame { aspect-ratio: 590 / 350; display: flex; align-items: center; justify-content: center; }
+        .diagram-frame img { width: 100%; height: 100%; max-height: none; object-fit: contain; }
+        .photo-crop { position: relative; overflow: hidden; width: 100%; background: #f6f8fa; border-radius: 4px; }
+        .photo-crop img { position: absolute; max-width: none; max-height: none; margin: 0; height: auto; }
+        .cvd-crop { aspect-ratio: 590 / 350; }
+        .cvd-crop img { width: 120.1695%; left: -13.5593%; top: -44.2857%; }
+        .raman-crop { aspect-ratio: 1230 / 860; }
+        .raman-crop img { width: 166.5041%; left: -56.0976%; top: -23.2558%; }
+        .hall-crop { aspect-ratio: 1820 / 1030; }
+        .hall-crop img { width: 112.5275%; left: -10.9890%; top: -4.8544%; }
+        .related { display: flex; flex-wrap: wrap; gap: 12px; }
+        .related a { display: block; padding: 12px 16px; border: 1px solid #d8e7f8; border-radius: 8px; text-decoration: none; background: #f7fbff; }
+        @media (max-width: 720px) { body { padding: 22px 12px 36px; } .container { padding: 24px 18px; } .row, .media-grid { grid-template-columns: minmax(0,1fr); gap: 16px; } .stage { padding: 22px 0; } figure img { max-height: 320px; } .wide-figure img { max-height: 460px; } }
+    
+        .eyebrow { color: #586069; font-size: .88rem; margin-bottom: 12px; }
+        .table-wrap { overflow-x: auto; margin: 18px 0; }
+        table { border-collapse: collapse; width: 100%; font-size: .92rem; }
+        th, td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid #e1e4e8; }
+        th { background: #f6f8fa; font-weight: 600; }
+        .steps { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
+        .step { padding: 18px; border: 1px solid #e1e4e8; border-radius: 8px; }
+        .step p { margin-bottom: 0; font-size: .94rem; }
+        li { margin-bottom: 10px; }
+        .source { color: #586069; font-size: .85rem; }
+        .source a { overflow-wrap: anywhere; }
+        @media (max-width: 720px) { .steps { grid-template-columns: minmax(0,1fr); } th, td { padding: 10px; } }
+</style>
+</head>
+<body>
+    <a class="back" href="index.html">← Back to Home</a>
+    <main class="container">
+        <header>
+            <p class="eyebrow">Research Project · Summer Camp Group Work</p>
+            <h1>MACG: Mobility-Aware Clustered Routing for UAV Networks</h1>
+            <p class="intro">How can grouping mobile UAVs help data reach its destination? This team project studies Mobility-Aware Clustered Greedy Routing (MACG) and compares it with DSDV, Greedy, QGeo, and CR-QGeo using Python-based simulation.</p>
+            <nav class="page-nav" aria-label="On this page"><a href="#contribution">My Contribution</a><a href="#mechanism">How MACG Works</a><a href="#experiments">Experiments</a><a href="#findings">Findings</a><a href="#sources">Code &amp; Sources</a></nav>
+        </header>
+        <section class="chapter" id="contribution">
+            <h2>My Contribution</h2>
+            <ul>
+                <li><strong>Concept:</strong> I proposed a grouping approach inspired by Bluetooth group connections, bringing this idea into the team's MACG work.</li>
+                <li><strong>Simulation design:</strong> I proposed simulation conditions and adjusted the setup as issues appeared, then compared the results across routing protocols.</li>
+                <li><strong>Development approach:</strong> Python code was developed with AI assistance on the existing UavNetSim platform. The MACG implementation and experiment reports are team work.</li>
+            </ul>
+            <p>The Bluetooth connection model inspired the grouping idea; the simulated network does not use Bluetooth as its radio protocol.</p>
+        </section>
+        <section class="chapter" id="mechanism">
+            <h2>How MACG Works</h2>
+            <p>MACG organizes UAVs with similar positions and movement into clusters. Cluster heads and gateways support hierarchical forwarding, while ordinary Greedy rules select forwarding neighbors. Mobility information helps organize the clusters rather than replacing the distance-based Greedy rule.</p>
+            <div class="steps">
+                <div class="step"><h3>01 · Form Groups</h3><p>Use neighbor position and movement information to organize nearby UAVs into clusters.</p></div>
+                <div class="step"><h3>02 · Assign Roles</h3><p>Cluster heads organize groups, members join them, and gateways connect different clusters.</p></div>
+                <div class="step"><h3>03 · Forward Packets</h3><p>Use local, cluster-head, or gateway forwarding as appropriate, with flat Greedy fallbacks.</p></div>
+                <div class="step"><h3>04 · Maintain Connections</h3><p>Update cluster membership and gateway relationships as UAVs move and links change.</p></div>
+            </div>
+            <p class="source">Implementation: <a href="https://github.com/Derek46518/UavNetSimTest1/blob/main/routing/macg/macg.py">MACG forwarding</a> and <a href="https://github.com/Derek46518/UavNetSimTest1/blob/main/routing/macg/macg_cluster_manager.py">cluster management</a>. The repository describes the implementation as GMDC-inspired.</p>
+        </section>
+        <section class="chapter" id="experiments">
+            <h2>Experimental Design &amp; Iteration</h2>
+            <p>The study compares packet delivery ratio (PDR), end-to-end delay, routing load, and collisions. The team revised the setup to separate routing behavior from early energy depletion and short observation periods.</p>
+            <div class="table-wrap"><table>
+                <caption>Why the experiment conditions changed</caption>
+                <thead><tr><th scope="col">Issue</th><th scope="col">Adjustment</th><th scope="col">Purpose</th></tr></thead>
+                <tbody>
+                    <tr><td>At 20,000 J, UAVs stopped communicating after about 16 seconds at 10 m/s.</td><td>Increase the energy budget equally for all protocols in each comparison.</td><td>Keep UAVs active throughout the experiment.</td></tr>
+                    <tr><td>Flight power changes with speed.</td><td>Use 5,000,000 J for the speed sweep.</td><td>Compare mobility effects without different energy-depletion times.</td></tr>
+                    <tr><td>A 30-second run emphasizes early behavior.</td><td>Extend runs to 120 seconds and inspect four 30-second windows.</td><td>Observe sustained traffic and cluster maintenance.</td></tr>
+                    <tr><td>Increasing UAV count also increases density and total offered traffic.</td><td>Add a map-size sweep at fixed UAV counts.</td><td>Examine spatial density and connectivity separately from changing the number of traffic sources.</td></tr>
+                </tbody>
+            </table></div>
+            <div class="table-wrap"><table>
+                <caption>Simulation scenarios</caption>
+                <thead><tr><th scope="col">Experiment</th><th scope="col">Changed condition</th><th scope="col">Other settings</th></tr></thead>
+                <tbody>
+                    <tr><td>UAV count</td><td>10 / 20 / 50 / 100 UAVs</td><td>10 m/s; 600 × 600 × 100 m; 200,000 J</td></tr>
+                    <tr><td>Mobility speed</td><td>10 / 20 / 30 / 40 m/s</td><td>10 UAVs; 600 × 600 × 100 m; 5,000,000 J</td></tr>
+                    <tr><td>Map size</td><td>300 / 600 / 900 / 1200 / 1600 m square maps</td><td>Separate 10- and 50-UAV sweeps; 100 m height; 10 m/s; 200,000 J</td></tr>
+                </tbody>
+            </table></div>
+            <p class="source">All scenarios above use 120 seconds, seed 2025, 3-D Gauss-Markov mobility, and a Poisson traffic rate of 5 packets/s per UAV. Sources: <a href="https://github.com/Derek46518/UavNetSimTest1/blob/main/ExperimentA_120s.md">UAV-count report</a>, <a href="https://github.com/Derek46518/UavNetSimTest1/blob/main/ExperimentB_120s.md">speed report</a>, and <a href="https://github.com/Derek46518/UavNetSimTest1/blob/main/ExperimentD.md">map-size report</a>.</p>
+        </section>
+        <section class="chapter" id="findings">
+            <h2>Results &amp; Interpretation</h2>
+            <h3>Clustering Helps in Some Dense Scenarios</h3>
+            <p>In the 120-second UAV-count sweep, Greedy led PDR at 10, 20, and 50 UAVs. MACG led at 100 UAVs. The map-size sweep also found a MACG advantage with 50 UAVs in a 300 m square area.</p>
+            <div class="table-wrap"><table>
+                <caption>Selected PDR comparisons from the team reports</caption>
+                <thead><tr><th scope="col">Scenario</th><th scope="col">MACG</th><th scope="col">Greedy</th><th scope="col">Report</th></tr></thead>
+                <tbody>
+                    <tr><td>100 UAVs · 600 m square map</td><td><strong>10.37%</strong></td><td>3.11%</td><td>UAV-count sweep</td></tr>
+                    <tr><td>50 UAVs · 300 m square map</td><td><strong>38.66%</strong></td><td>25.04%</td><td>Map-size sweep</td></tr>
+                    <tr><td>10 UAVs · 1600 m square map</td><td>8.80%</td><td><strong>19.68%</strong></td><td>Map-size sweep</td></tr>
+                </tbody>
+            </table></div>
+            <p>The team reports interpret this pattern as a trade-off: dense networks provide more candidates for useful clusters, while sparse networks may not gain enough forwarding benefit to offset cluster setup and maintenance. The low absolute PDR at 100 UAVs also shows that the network remains heavily stressed.</p>
+            <h3>Mobility Also Has a Maintenance Cost</h3>
+            <p>In the 120-second speed sweep, Greedy led PDR at every tested speed. MACG's PDR was lowest at 20 m/s (23.30%) and higher at 30 and 40 m/s (38.84% and 40.99%). The report relates this non-monotonic pattern to clustering dynamics; it does not establish that MACG always improves with speed.</p>
+            <h3>Read Delivery and Delay Together</h3>
+            <p>Average delay describes delivered packets. A protocol can report a low delay while delivering very few packets, so delay alone does not indicate a better network.</p>
+            <p class="source">Results and mechanism-based interpretations are from the team's <a href="https://github.com/Derek46518/UavNetSimTest1/blob/main/ExperimentAB_120s_Summary.md">120-second summary</a> and <a href="https://github.com/Derek46518/UavNetSimTest1/blob/main/ExperimentD.md">map-size study</a>. These are observations from this simulator and a single seed, not general performance guarantees.</p>
+        </section>
+        <section class="chapter" id="sources">
+            <h2>Code &amp; Sources</h2>
+            <ul>
+                <li><a href="https://github.com/Derek46518/UavNetSimTest1">Team repository — Derek46518/UavNetSimTest1</a></li>
+                <li><a href="https://github.com/Derek46518/UavNetSimTest1/blob/main/routing/macg/macg.py">MACG implementation</a></li>
+                <li><a href="https://github.com/Derek46518/UavNetSimTest1/blob/main/results/120s/ExperimentA_120s.csv">UAV-count results (CSV)</a> · <a href="https://github.com/Derek46518/UavNetSimTest1/blob/main/results/120s/ExperimentB_120s.csv">speed results (CSV)</a></li>
+                <li><a href="https://github.com/Derek46518/UavNetSimTest1/blob/main/tools/run_scenario.py">Scenario runner</a> · <a href="https://github.com/Derek46518/UavNetSimTest1/blob/main/tools/build_reports.py">report builder</a></li>
+                <li><a href="https://github.com/Zihao-Felix-Zhou/UavNetSim-v1">Original UavNetSim-v1 platform</a> — the simulation foundation, developed by its original authors.</li>
+            </ul>
+        </section>
+    </main>
+</body>
+</html>
