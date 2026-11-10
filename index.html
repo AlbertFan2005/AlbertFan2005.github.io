@@ -81,6 +81,82 @@
             font-family: "SFMono-Regular", Consolas, monospace;
         }
 
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .project-grid--technical {
+            margin-top: 15px;
+        }
+
+        .project-card {
+            display: block;
+            padding: 20px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--card-bg);
+            color: inherit;
+            text-decoration: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover,
+        .project-card:focus-visible {
+            border-color: var(--accent-blue);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-card:focus-visible {
+            outline: 3px solid var(--accent-blue);
+            outline-offset: 2px;
+        }
+
+        .project-card h4 {
+            margin-top: 0;
+            color: #24292e;
+        }
+
+        .project-card p {
+            margin-bottom: 0;
+            color: #586069;
+            font-size: 0.85em;
+        }
+
+        .project-card--dark-copy p {
+            color: #24292e;
+        }
+
+        .core-focus {
+            color: #d9480f;
+            font-size: 0.7em;
+            vertical-align: middle;
+        }
+
+        .project-card--technical {
+            padding: 25px;
+            border-width: 1px;
+        }
+
+        .project-card--technical h3 {
+            margin-top: 0;
+            color: var(--accent-blue);
+            font-size: 1.25em;
+        }
+
+        .project-card--technical p {
+            margin-bottom: 1em;
+            font-size: 0.95em;
+        }
+
+        @media (max-width: 640px) {
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         ul {
             padding-left: 20px;
         }
@@ -105,10 +181,11 @@
     <p>Focusing on Analog IC Design</p>
 </header>
 
-<div class="container">
+<main class="container">
     <div class="section">
         <h2>About Me</h2>
-        <p>I am a senior Electronics Engineering student at Chung Yuan Christian University, with interests in analog IC design and sensor interface circuits. In my graphene sensor project, I participated in graphene fabrication, independently designed the complete analog readout circuit, and built an ESP32-based vibration test platform. Through this work, I have become particularly interested in how circuit design connects small resistance changes to electrical signals that can be measured and analyzed.</p>
+        <p>I am a senior Electronics Engineering student at Chung Yuan Christian University, focused on analog IC design and sensor interface circuits. My research project examines the electromechanical stability of multilayer graphene sensors.</p>
+        <p>For this work, I contributed to graphene fabrication, independently designed the analog readout circuit from architecture through schematic, and built an ESP32-based vibration test platform. I am especially interested in turning small resistance changes into reliable, measurable electrical signals.</p>
     </div>
 
     <div class="section">
@@ -119,20 +196,16 @@
         <p>This project studies graphene sensor reliability.</p>
         <p><strong>My Contribution:</strong> I participated in graphene fabrication and independently designed the complete analog readout circuit, including the circuit architecture and schematic drawings, and built the vibration test platform.</p>
     
-        <div style="display: flex; gap: 15px; margin-top: 20px;">
+        <div class="project-grid">
             
-            <a href="graphene-details.html" style="flex: 1; text-decoration: none; color: inherit; border: 1.5px solid #e1e4e8; padding: 20px; border-radius: 8px; background: #fff; transition: 0.3s; display: block;" 
-               onmouseover="this.style.borderColor='#24292e'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';" 
-               onmouseout="this.style.borderColor='#e1e4e8'; this.style.boxShadow='none';">
-                <h4 style="margin-top: 0; color: #24292e;">Graphene Fabrication &amp; Characterization</h4>
-                <p style="font-size: 0.85em; color: #586069; margin-bottom: 0;">Graphene growth, transfer, and material characterization.</p>
+            <a href="graphene-details.html" class="project-card">
+                <h4>Graphene Fabrication &amp; Characterization</h4>
+                <p>Graphene growth, transfer, and material characterization.</p>
             </a>
     
-            <a href="circuit-details.html" style="flex: 1; text-decoration: none; color: inherit; border: 1.5px solid #e1e4e8; padding: 20px; border-radius: 8px; background: #fff; transition: 0.3s; display: block;"
-               onmouseover="this.style.borderColor='#24292e'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';" 
-               onmouseout="this.style.borderColor='#e1e4e8'; this.style.boxShadow='none';">
-                <h4 style="margin-top: 0; color: #24292e;">Circuit Design & PCB <span style="font-size: 0.7em; color: #d9480f; vertical-align: middle;">(Core Focus)</span></h4>
-                <p style="font-size: 0.85em; color: #24292e; margin-bottom: 0;">Analog readout circuits & EasyEDA hardware prototyping.</p>
+            <a href="circuit-details.html" class="project-card project-card--dark-copy">
+                <h4>Circuit Design & PCB <span class="core-focus">(Core Focus)</span></h4>
+                <p>Analog readout circuits & EasyEDA hardware prototyping.</p>
             </a>
     
         </div>
@@ -147,12 +220,10 @@
             <h3 id="macg-project">MACG: Mobility-Aware Clustered Routing for UAV Networks</h3>
             <p><em>Supervised by Professor Chih-Min Yu</em></p>
             <p>A simulation study of clustered routing in mobile UAV networks. My work focused on the grouping concept, simulation conditions, and iterative evaluation.</p>
-            <div style="display: flex; gap: 15px; margin-top: 20px;">
-                <a href="macg-uav-routing.html" style="flex: 1; text-decoration: none; color: inherit; border: 1.5px solid #e1e4e8; padding: 20px; border-radius: 8px; background: #fff; transition: 0.3s; display: block;"
-                   onmouseover="this.style.borderColor='#24292e'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';"
-                   onmouseout="this.style.borderColor='#e1e4e8'; this.style.boxShadow='none';">
-                    <h4 style="margin-top: 0; color: #24292e;">MACG Routing Research</h4>
-                    <p style="font-size: 0.85em; color: #586069; margin-bottom: 0;">Protocol concept, simulation design, and comparative evaluation.</p>
+            <div class="project-grid">
+                <a href="macg-uav-routing.html" class="project-card">
+                    <h4>MACG Routing Research</h4>
+                    <p>Protocol concept, simulation design, and comparative evaluation.</p>
                 </a>
             </div>
             <div style="margin-top: 20px;">
@@ -165,20 +236,16 @@
 
     <div class="section">
         <h2>Technical Projects</h2>
-        <div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin-top: 15px;">
+        <div class="project-grid project-grid--technical">
             
-            <a href="piano-project.html" style="text-decoration: none; color: inherit;">
-                <div class="small-card" style="border: 1px solid var(--border-color); padding: 25px; border-radius: 8px; transition: 0.3s; background: white; cursor: pointer;" onmouseover="this.style.borderColor='var(--accent-blue)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'" onmouseout="this.style.borderColor='var(--border-color)'; this.style.boxShadow='none'">
-                    <h3 style="margin-top: 0; color: var(--accent-blue); font-size: 1.25em;">Arduino Electronic Piano</h3>
-                    <p style="font-size: 0.95em; color: #586069;">An Arduino piano with push-button control and recording/playback.</p>
-                </div>
+            <a href="piano-project.html" class="project-card project-card--technical">
+                <h3>Arduino Electronic Piano</h3>
+                <p>An Arduino piano with push-button control and recording/playback.</p>
             </a>
 
-            <a href="esp32-vibration-platform.html" style="text-decoration: none; color: inherit;">
-                <div class="small-card" style="border: 1px solid var(--border-color); padding: 25px; border-radius: 8px; transition: 0.3s; background: white; cursor: pointer;" onmouseover="this.style.borderColor='var(--accent-blue)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)' " onmouseout="this.style.borderColor='var(--border-color)'; this.style.boxShadow='none'">
-                    <h3 style="margin-top: 0; color: var(--accent-blue); font-size: 1.25em;">ESP32 Vibration Platform</h3>
-                    <p style="font-size: 0.95em; color: #586069;">A Wi-Fi-controlled vibration platform with an MPU-6050 sensor and a live monitoring interface.</p>
-                </div>
+            <a href="esp32-vibration-platform.html" class="project-card project-card--technical">
+                <h3>ESP32 Vibration Platform</h3>
+                <p>A Wi-Fi-controlled vibration platform with an MPU-6050 sensor and a live monitoring interface.</p>
             </a>
 
             </div>
@@ -195,11 +262,11 @@
             <li><strong>Embedded Systems:</strong> Arduino, ESP32, and EasyPIC v7.</li>
         </ul>
     </div>
-</div>
+</main>
 
-<div class="footer">
+<footer class="footer">
     © 2026 Albert Fan. Built with GitHub Pages.
-</div>
+</footer>
 
 
 </body>
